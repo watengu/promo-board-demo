@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>さくら｜プロフィールカード（デモ）</title>
+<meta name="description" content="さくら（六本木・セラピスト）のプロフィールカード｜フリーセラピスト掲示板（デモ）。掲載者・数値はすべて架空で、写真はAI生成画像です。">
+<meta property="og:type" content="profile">
+<meta property="og:title" content="さくら｜プロフィールカード（デモ）">
+<meta property="og:description" content="六本木のフリーセラピスト「さくら」の宣伝カード（デモ）。写真はAI生成、掲載情報は架空です。">
+<meta property="og:image" content="https://watengu.github.io/promo-board-demo/images/p3-a.jpg">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="stylesheet" href="../style.css">
+</head>
+<body>
+<div id="age-gate">
+  <div class="gate-box">
+    <div class="gate-logo">フリーセラピスト掲示板<span>（デモ）</span></div>
+    <p class="gate-lead">このサイトはフリーセラピストの宣伝リンク集です。</p>
+    <p class="gate-q">あなたは18歳以上ですか？</p>
+    <button id="gate-yes" class="gate-btn yes">はい、18歳以上です</button>
+    <button id="gate-no" class="gate-btn no">いいえ</button>
+    <p id="gate-msg" class="gate-msg"></p>
+    <p class="gate-note">※これはデモサイトです。掲載者・店舗・数値はすべて架空で、写真はAI生成画像を使用しています。</p>
+  </div>
+</div>
+<div class="demo-banner">デモサイトです。掲載者・店舗・数値はすべて架空で、外部リンクはすべてダミーです。</div>
+<div class="wrap">
+  <main id="detail">
+    <header class="site" style="text-align:left">
+      <div class="logo" style="font-size:20px">さくら <span style="margin:0;font-size:13px;color:var(--sub)">28歳｜六本木</span></div>
+      <p class="tagline" style="text-align:left">サロン・セレッソ六本木（架空）｜<span class="update-note" id="upd-note">更新しました：本日 10:20 更新（5時間前）</span></p>
+      <p id="open-slot" style="margin-top:6px;display:none"><span class="open-badge" style="position:static">本日営業中（掲載者申告）</span></p>
+    </header>
+    <div class="photo-row">
+      <span class="photo-cell"><img src="../images/p3-a.jpg" alt="さくらの写真（AI生成）" data-name="さくら" data-color="#5b7fa6" onerror="imgFallback(this)"><span class="ai-label">AI生成</span></span>
+      <span class="photo-cell"><img src="../images/p3-b.jpg" alt="さくらの写真（AI生成）" data-name="さくら" data-color="#5b7fa6" onerror="imgFallback(this)"><span class="ai-label">AI生成</span></span>
+    </div>
+    <p style="font-size:11px;color:var(--sub);margin-top:6px">※ 写真はAI生成画像です（実在の人物ではありません）。</p>
+    <div style="margin-top:10px;font-size:13px">⭐⭐⭐⭐⭐ <span style="font-size:11px;color:var(--sub)">本人のおすすめ度（掲載者自己申告）｜今日の気分 🍵｜更新 2日連続</span></div>
+    <div class="btn-row">
+      <button class="btn" id="like-btn">♥ いいね <span id="like-num">203</span></button>
+      <button class="btn" id="fav-btn">★ お気に入り</button>
+      <button class="btn primary" id="share-btn">シェア</button>
+    </div>
+    <section class="block"><h2>プロフィール</h2><dl class="kv">
+      <dt>名前</dt><dd>さくら</dd>
+      <dt>職種</dt><dd>セラピスト（選択式：カードは職種を選べる汎用基盤です）</dd>
+      <dt>活動形態</dt><dd>フリー（店舗所属なし）</dd>
+      <dt>エリア</dt><dd>六本木</dd>
+      <dt>身長</dt><dd>165cm</dd>
+      <dt>タグ</dt><dd>整体／ストレッチ／指圧</dd>
+      <dt>ひとこと</dt><dd>整体とストレッチを組み合わせた施術。肩こり・腰の重さにしっかりアプローチします。</dd>
+    </dl></section>
+    <section class="block"><h2>所属店舗</h2><dl class="kv">
+      <dt>店舗名</dt><dd>サロン・セレッソ六本木（架空）</dd></dl>
+      <div class="ext-links" style="margin-top:10px"><a data-ext="shop">店舗ページを見る（外部リンク・ダミー）<span class="cnt"></span></a></div></section>
+    <section class="block"><h2>写メ日記（外部ページへのリンク）</h2>
+      <ul class="diary-list"><li data-diary class="diary-latest"><span class="d-date">2026-11-01</span>11/1 午前中の枠について（外部ページ） <span class="latest-badge">最新</span></li></ul>
+      <details class="diary-more"><summary>過去の日記を見る（2件）</summary><ul class="diary-list"><li data-diary><span class="d-date">2026-10-31</span>10/31 10月ありがとうございました</li><li data-diary><span class="d-date">2026-10-26</span>10/26 ストレッチ講座の記録</li></ul></details>
+    </section>
+    <section class="block"><h2>その他のリンク（外部）</h2><div class="ext-links">
+      <a data-ext="home">公式プロフィール（外部）<span class="cnt" data-cnt="home"></span></a>
+      <a data-ext="blog">写メ日記（外部）<span class="cnt" data-cnt="blog"></span></a>
+      <a data-ext="sns">SNS（外部）<span class="cnt" data-cnt="sns"></span></a>
+    </div><p style="font-size:11px;color:var(--sub);margin-top:8px">※ 外部リンクは計測用の中継を経由する設計です（デモでは端末内でクリック数を数えています）。</p></section>
+  </main>
+  <a class="back" href="../index.html">← 掲示板にもどる</a>
+  <footer class="site">
+    <nav class="footer-links"><a href="../terms.html">利用規約（仮）</a><a href="../report.html">通報・削除の窓口</a><a href="../about.html">運営者情報</a></nav>
+    このカードが掲載の本体です。掲示板の一覧はこのカードの内容をそのまま表示しています。<br>
+    連絡・予約・決済は各リンク先（本人のページ）で行われます。写真はAI生成画像です。
+  </footer>
+</div>
+<script src="../app.js"></script>
+<script>
+var PID = 3;
+var BASE_LIKES = 203;
+var liked = getStore('liked_' + PID, false);
+var faved = getStore('fav_' + PID, false);
+var likeBtn = document.getElementById('like-btn');
+function paintLike() {
+  document.getElementById('like-num').textContent = BASE_LIKES + (liked ? 1 : 0);
+  likeBtn.classList.toggle('active', liked);
+}
+likeBtn.addEventListener('click', function () {
+  liked = !liked; setStore('liked_' + PID, liked); paintLike();
+});
+paintLike();
+var favBtn = document.getElementById('fav-btn');
+function paintFav() { favBtn.classList.toggle('active', faved); favBtn.textContent = faved ? '★ お気に入り済み' : '★ お気に入り'; }
+favBtn.addEventListener('click', function () {
+  faved = !faved; setStore('fav_' + PID, faved); paintFav();
+  toast(faved ? 'お気に入りに保存しました（端末内）' : 'お気に入りを解除しました');
+});
+paintFav();
+document.getElementById('share-btn').addEventListener('click', function () {
+  var url = location.href;
+  if (navigator.share) {
+    navigator.share({ title: document.title, url: url }).catch(function () {});
+  } else if (navigator.clipboard) {
+    navigator.clipboard.writeText(url);
+    toast('カードのURLをコピーしました');
+  } else {
+    toast('カードURL：' + url);
+  }
+});
+function paintCounts() {
+  document.querySelectorAll('[data-cnt]').forEach(function (s) {
+    var n = getStore('clicks_' + PID + '_' + s.dataset.cnt, 0);
+    s.textContent = n ? 'あなたの端末でのクリック ' + n + '回' : '';
+  });
+}
+document.querySelectorAll('[data-ext]').forEach(function (a) {
+  a.addEventListener('click', function () {
+    countClick(PID, a.dataset.ext);
+    paintCounts();
+    toast('デモのため外部ページには移動しません（クリックを計測しました）');
+  });
+});
+document.querySelectorAll('[data-diary]').forEach(function (li) {
+  li.addEventListener('click', function () {
+    countClick(PID, 'blog');
+    toast('デモのため外部ページには移動しません（クリックを計測しました）');
+  });
+});
+paintCounts();
+// ダッシュボード連動（端末内保存）：営業中バッジと更新時刻へ反映
+var cst = getCardState(PID);
+if (cst) {
+  if (typeof cst.open === 'boolean') {
+    document.getElementById('open-slot').style.display = cst.open ? '' : 'none';
+  }
+  if (cst.updatedAt) {
+    var m = Math.max(0, Math.round((Date.now() - cst.updatedAt) / 60000));
+    document.getElementById('upd-note').textContent = '更新しました：たった今（' + relTime(m) + '）';
+  }
+}
+</script>
+</body>
+</html>

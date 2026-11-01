@@ -2,10 +2,14 @@
 (function () {
   // ---------- 年齢確認ゲート ----------
   function buildGate() {
-    if (sessionStorage.getItem("age_ok") === "1") return;
-    var ov = document.createElement("div");
+    var existing = document.getElementById("age-gate");
+    if (sessionStorage.getItem("age_ok") === "1") {
+      if (existing) existing.remove();
+      return;
+    }
+    var ov = existing || document.createElement("div");
     ov.id = "age-gate";
-    ov.innerHTML =
+    if (!existing) ov.innerHTML =
       '<div class="gate-box">' +
       '<div class="gate-logo">フリーセラピスト掲示板<span>（デモ）</span></div>' +
       '<p class="gate-lead">このサイトはフリーセラピストの宣伝リンク集です。</p>' +
@@ -15,7 +19,7 @@
       '<p id="gate-msg" class="gate-msg"></p>' +
       '<p class="gate-note">※これはデモサイトです。掲載者・店舗・数値はすべて架空で、写真はAI生成画像を使用しています。</p>' +
       "</div>";
-    document.body.appendChild(ov);
+    if (!existing) document.body.appendChild(ov);
     document.body.classList.add("gate-locked");
     document.getElementById("gate-yes").addEventListener("click", function () {
       sessionStorage.setItem("age_ok", "1");
@@ -74,3 +78,23 @@ function toast(msg) {
     setTimeout(function () { t.remove(); }, 300);
   }, 2200);
 }
+
+// ---------- 画像フォールバック（イニシャル＋色プレースホルダ） ----------
+var PH_COLORS = {1: "#c96f4a", 2: "#7a9e7e", 3: "#5b7fa6", 4: "#a65b8f", 5: "#8f6a3d", 6: "#4a7a8c"};
+function phColor(id) { return PH_COLORS[id] || "#999"; }
+function imgFallback(img) {
+  if (!img || img.dataset.fbDone) return;
+  img.dataset.fbDone = "1";
+  var span = document.createElement("span");
+  span.className = "img-fallback";
+  span.style.background = img.getAttribute("data-color") || "#999";
+  span.textContent = (img.getAttribute("data-name") || img.alt || "？").charAt(0);
+  img.replaceWith(span);
+}
+document.addEventListener("DOMContentLoaded", function () {
+  document.querySelectorAll("img").forEach(function (img) {
+    if (img.complete && img.naturalWidth === 0) imgFallback(img);
+  });
+});
+// ---------- ダッシュボード連動の状態（端末内保存） ----------
+function getCardState(id) { return getStore("cardstate_" + id, null); }

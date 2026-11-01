@@ -8,6 +8,17 @@
 <link rel="stylesheet" href="style.css">
 </head>
 <body>
+<div id="age-gate">
+  <div class="gate-box">
+    <div class="gate-logo">フリーセラピスト掲示板<span>（デモ）</span></div>
+    <p class="gate-lead">このサイトはフリーセラピストの宣伝リンク集です。</p>
+    <p class="gate-q">あなたは18歳以上ですか？</p>
+    <button id="gate-yes" class="gate-btn yes">はい、18歳以上です</button>
+    <button id="gate-no" class="gate-btn no">いいえ</button>
+    <p id="gate-msg" class="gate-msg"></p>
+    <p class="gate-note">※これはデモサイトです。掲載者・店舗・数値はすべて架空で、写真はAI生成画像を使用しています。</p>
+  </div>
+</div>
 <div class="demo-banner">デモサイトです。掲載者・店舗・数値はすべて架空で、外部リンクはすべてダミーです。</div>
 <div class="wrap">
   <header class="site">
@@ -28,8 +39,13 @@
   </div>
   <div class="board-note" id="board-note" style="display:none"></div>
 
-  <!-- 鮮度の帯 -->
-  <div class="fresh-band" id="fresh-band"></div>
+  <!-- 鮮度の帯（件数主体・名前は最大3名） -->
+  <div class="fresh-band" id="fresh-band">
+    <div class="fb-title">🔥 今日も動いています</div>
+    <div class="fb-row">今日更新：<b>4件</b>（りお・ゆき・みゆ ほか）</div>
+    <div class="fb-row">24時間以内の更新：<b>4件</b> ／ 本日営業中：<b>4名</b></div>
+    <div class="fb-note">今日更新＝本人が「更新しました」を押したカード／24時間以内＝更新から24時間以内／本日営業中＝掲載者の自己申告です（営業実態をシステムが確認したものではありません）</div>
+  </div>
 
   <div class="controls" id="controls">
     <input type="search" class="search-box" id="q" placeholder="名前・エリア・タグで検索（例：銀座、アロマ）">
@@ -38,13 +54,88 @@
       <button data-sort="updated">更新順</button>
       <button data-sort="random">ランダム順</button>
     </div>
-    <p class="result-count" id="result-count"></p>
+    <p class="result-count" id="result-count">カード 6件（セラピスト）</p>
   </div>
 
-  <main class="grid" id="list"></main>
+  <!-- カード一覧は初期HTMLに焼き込み済み（JSなしでも表示される）。JSはこの静的カードを並び替え・絞り込みする -->
+  <main class="grid" id="list">
+    <a class="p-card" href="card/2.html" data-id="2" data-joined="3" data-updated="130" data-open="1" data-hay="みゆ 新宿 リンパ ヘッドスパ メゾンロゼ新宿（架空）">
+      <span class="ph"><img src="images/p2-a.jpg" alt="みゆの写真（AI生成）" data-name="みゆ" data-color="#7a9e7e" onerror="imgFallback(this)"><span class="new-badge">NEW</span><span class="ai-label">AI生成</span></span>
+      <span class="body">
+      <span class="name">みゆ <span class="age">24歳</span></span><br>
+      <span class="area">📍新宿</span> <span class="job">職種：セラピスト</span>
+      <span class="tags"><span>リンパ</span><span>ヘッドスパ</span></span>
+      <span class="open-pill" data-open-badge>本日営業中（掲載者申告）</span>
+      <span class="stars">⭐⭐⭐⭐☆<span class="stars-note">本人のおすすめ度（掲載者自己申告）</span></span>
+      <span class="meta"><span>♥ 86</span><span class="upd-time">更新：2時間前</span></span>
+      <span class="detail-link">プロフィール・写真・外部リンクを見る →</span>
+      </span></a>
+    <a class="p-card" href="card/6.html" data-id="6" data-joined="7" data-updated="75" data-open="1" data-hay="ゆき 恵比寿 オイル 夜型 フェイシャル サロン・ルーチェ恵比寿（架空）">
+      <span class="ph"><img src="images/p6-a.jpg" alt="ゆきの写真（AI生成）" data-name="ゆき" data-color="#4a7a8c" onerror="imgFallback(this)"><span class="new-badge">NEW</span><span class="ai-label">AI生成</span></span>
+      <span class="body">
+      <span class="name">ゆき <span class="age">25歳</span></span><br>
+      <span class="area">📍恵比寿</span> <span class="job">職種：セラピスト</span>
+      <span class="tags"><span>オイル</span><span>夜型</span><span>フェイシャル</span></span>
+      <span class="open-pill" data-open-badge>本日営業中（掲載者申告）</span>
+      <span class="stars">⭐⭐⭐⭐⭐<span class="stars-note">本人のおすすめ度（掲載者自己申告）</span></span>
+      <span class="meta"><span>♥ 167</span><span class="upd-time">更新：1時間前</span></span>
+      <span class="detail-link">プロフィール・写真・外部リンクを見る →</span>
+      </span></a>
+    <a class="p-card" href="card/4.html" data-id="4" data-joined="12" data-updated="1500" data-open="1" data-hay="あかり 池袋 アロマ ホットストーン メゾンクレール池袋（架空）">
+      <span class="ph"><img src="images/p4-a.jpg" alt="あかりの写真（AI生成）" data-name="あかり" data-color="#a65b8f" onerror="imgFallback(this)"><span class="ai-label">AI生成</span></span>
+      <span class="body">
+      <span class="name">あかり <span class="age">23歳</span></span><br>
+      <span class="area">📍池袋</span> <span class="job">職種：セラピスト</span>
+      <span class="tags"><span>アロマ</span><span>ホットストーン</span></span>
+      <span class="open-pill" data-open-badge>本日営業中（掲載者申告）</span>
+      <span class="stars">⭐⭐⭐⭐☆<span class="stars-note">本人のおすすめ度（掲載者自己申告）</span></span>
+      <span class="meta"><span>♥ 57</span><span class="upd-time">更新：1日前</span></span>
+      <span class="detail-link">プロフィール・写真・外部リンクを見る →</span>
+      </span></a>
+    <a class="p-card" href="card/1.html" data-id="1" data-joined="21" data-updated="40" data-open="1" data-hay="りお 銀座 アロマ オイル 深夜ok サロン・フィオーレ銀座（架空）">
+      <span class="ph"><img src="images/p1-a.jpg" alt="りおの写真（AI生成）" data-name="りお" data-color="#c96f4a" onerror="imgFallback(this)"><span class="ai-label">AI生成</span></span>
+      <span class="body">
+      <span class="name">りお <span class="age">26歳</span></span><br>
+      <span class="area">📍銀座</span> <span class="job">職種：セラピスト</span>
+      <span class="tags"><span>アロマ</span><span>オイル</span><span>深夜OK</span></span>
+      <span class="open-pill" data-open-badge>本日営業中（掲載者申告）</span>
+      <span class="stars">⭐⭐⭐⭐⭐<span class="stars-note">本人のおすすめ度（掲載者自己申告）</span></span>
+      <span class="meta"><span>♥ 128</span><span class="upd-time">更新：40分前</span></span>
+      <span class="detail-link">プロフィール・写真・外部リンクを見る →</span>
+      </span></a>
+    <a class="p-card" href="card/3.html" data-id="3" data-joined="45" data-updated="300" data-open="0" data-hay="さくら 六本木 整体 ストレッチ 指圧 サロン・セレッソ六本木（架空）">
+      <span class="ph"><img src="images/p3-a.jpg" alt="さくらの写真（AI生成）" data-name="さくら" data-color="#5b7fa6" onerror="imgFallback(this)"><span class="ai-label">AI生成</span></span>
+      <span class="body">
+      <span class="name">さくら <span class="age">28歳</span></span><br>
+      <span class="area">📍六本木</span> <span class="job">職種：セラピスト</span>
+      <span class="tags"><span>整体</span><span>ストレッチ</span><span>指圧</span></span>
+      <span class="open-pill" data-open-badge style="display:none">本日営業中（掲載者申告）</span>
+      <span class="stars">⭐⭐⭐⭐⭐<span class="stars-note">本人のおすすめ度（掲載者自己申告）</span></span>
+      <span class="meta"><span>♥ 203</span><span class="upd-time">更新：5時間前</span></span>
+      <span class="detail-link">プロフィール・写真・外部リンクを見る →</span>
+      </span></a>
+    <a class="p-card" href="card/5.html" data-id="5" data-joined="60" data-updated="2900" data-open="0" data-hay="かえで 渋谷 リフレクソロジー 読書好き ミルフィーユ渋谷（架空）">
+      <span class="ph"><img src="images/p5-a.jpg" alt="かえでの写真（AI生成）" data-name="かえで" data-color="#8f6a3d" onerror="imgFallback(this)"><span class="ai-label">AI生成</span></span>
+      <span class="body">
+      <span class="name">かえで <span class="age">27歳</span></span><br>
+      <span class="area">📍渋谷</span> <span class="job">職種：セラピスト</span>
+      <span class="tags"><span>リフレクソロジー</span><span>読書好き</span></span>
+      <span class="open-pill" data-open-badge style="display:none">本日営業中（掲載者申告）</span>
+      <span class="stars">⭐⭐⭐☆☆<span class="stars-note">本人のおすすめ度（掲載者自己申告）</span></span>
+      <span class="meta"><span>♥ 41</span><span class="upd-time">更新：2日前</span></span>
+      <span class="detail-link">プロフィール・写真・外部リンクを見る →</span>
+      </span></a>
+  </main>
   <p class="empty" id="empty" style="display:none">条件に合うカードがありません。</p>
 
+  <!-- PR枠（アフィリエイト広告の置き場サンプル） -->
+  <aside class="pr-slot">
+    <span class="pr-tag">PR</span>
+    <p>広告枠（ダミー）｜アフィリエイト広告の掲載位置のサンプルです。実際の広告はまだ掲載されていません。</p>
+  </aside>
+
   <footer class="site">
+    <nav class="footer-links"><a href="terms.html">利用規約（仮）</a><a href="report.html">通報・削除の窓口</a><a href="about.html">運営者情報</a></nav>
     このサイトは情報プラットフォームです。連絡・予約・決済は各リンク先（本人のページ）で行われます。<br>
     掲示板の一覧は、掲載者カードの内容をそのまま表示しています（別データは持っていません）。<br>
     写真はAI生成画像を使用しています（各写真に「AI生成」表記）。掲載者・店舗はすべて架空のデモデータです。
@@ -56,46 +147,59 @@
 <script>
 var listEl = document.getElementById('list');
 var sortMode = 'new', query = '';
+var cardEls = Array.prototype.slice.call(listEl.querySelectorAll('.p-card'));
 
-// 掲示板はカードのデータ（PEOPLE）だけから描画する＝カードが本体
-function listedPeople() {
-  return PEOPLE.filter(function (p) { return p.job === 'セラピスト'; });
+// ダッシュボード連動（端末内保存）を加味した実効状態
+function effUpd(el) {
+  var st = getCardState(+el.dataset.id);
+  if (st && st.updatedAt) return Math.max(0, Math.round((Date.now() - st.updatedAt) / 60000));
+  return +el.dataset.updated;
+}
+function effOpen(el) {
+  var st = getCardState(+el.dataset.id);
+  if (st && typeof st.open === 'boolean') return st.open;
+  return el.dataset.open === '1';
+}
+function byId(id) {
+  return PEOPLE.find(function (p) { return p.id === id; });
 }
 function renderFresh() {
-  var ps = listedPeople();
-  var today = ps.filter(function (p) { return p.updatedMin < 1440; });
-  var within24 = ps.filter(function (p) { return p.updatedMin <= 1440; });
-  var open = ps.filter(function (p) { return p.openToday; });
+  var items = cardEls.map(function (el) {
+    return { p: byId(+el.dataset.id), upd: effUpd(el), open: effOpen(el) };
+  });
+  var today = items.filter(function (x) { return x.upd < 1440; })
+                   .sort(function (a, b) { return a.upd - b.upd; });
+  var within24 = items.filter(function (x) { return x.upd <= 1440; });
+  var open = items.filter(function (x) { return x.open; });
+  var names = today.slice(0, 3).map(function (x) { return x.p.name; }).join('・');
+  if (today.length > 3) names += ' ほか';
   document.getElementById('fresh-band').innerHTML =
     '<div class="fb-title">🔥 今日も動いています</div>' +
-    '<div class="fb-row">今日更新：<b>' + today.map(function(p){return p.name;}).join('・') + '</b>（' + today.length + '件）</div>' +
-    '<div class="fb-row">24時間以内の更新：<b>' + within24.length + '件</b> ／ 本日営業中：<b>' + open.length + '名</b></div>';
+    '<div class="fb-row">今日更新：<b>' + today.length + '件</b>' +
+    (today.length ? '（' + names + '）' : '') + '</div>' +
+    '<div class="fb-row">24時間以内の更新：<b>' + within24.length + '件</b> ／ 本日営業中：<b>' + open.length + '名</b></div>' +
+    '<div class="fb-note">今日更新＝本人が「更新しました」を押したカード／24時間以内＝更新から24時間以内／本日営業中＝掲載者の自己申告です（営業実態をシステムが確認したものではありません）</div>';
+}
+function paintState() {
+  cardEls.forEach(function (el) {
+    var badge = el.querySelector('[data-open-badge]');
+    if (badge) badge.style.display = effOpen(el) ? '' : 'none';
+    var upd = el.querySelector('.upd-time');
+    if (upd) upd.textContent = '更新：' + relTime(effUpd(el));
+  });
 }
 function render() {
-  var items = listedPeople().filter(function (p) {
-    var hay = (p.name + ' ' + p.area + ' ' + p.tags.join(' ') + ' ' + p.shop).toLowerCase();
-    return hay.indexOf(query.toLowerCase()) >= 0;
+  var q = query.toLowerCase();
+  var items = cardEls.filter(function (el) {
+    return el.dataset.hay.indexOf(q) >= 0;
   });
-  if (sortMode === 'new') items.sort(function (a, b) { return a.joinedDays - b.joinedDays; });
-  if (sortMode === 'updated') items.sort(function (a, b) { return a.updatedMin - b.updatedMin; });
+  if (sortMode === 'new') items.sort(function (a, b) { return (+a.dataset.joined) - (+b.dataset.joined); });
+  if (sortMode === 'updated') items.sort(function (a, b) { return effUpd(a) - effUpd(b); });
   if (sortMode === 'random') items.sort(function () { return Math.random() - 0.5; });
+  cardEls.forEach(function (el) { el.style.display = 'none'; });
+  items.forEach(function (el) { el.style.display = ''; listEl.appendChild(el); });
   document.getElementById('empty').style.display = items.length ? 'none' : 'block';
   document.getElementById('result-count').textContent = 'カード ' + items.length + '件（セラピスト）';
-  listEl.innerHTML = items.map(function (p) {
-    return '<a class="p-card" href="card.html?id=' + p.id + '">' +
-      '<span class="ph"><img src="' + p.photos[0] + '" alt="' + p.name + 'の写真（AI生成）">' +
-      (p.openToday ? '<span class="open-badge">本日営業中</span>' : '') +
-      (p.joinedDays <= 7 ? '<span class="new-badge">NEW</span>' : '') +
-      '<span class="ai-label">AI生成</span></span>' +
-      '<span class="body">' +
-      '<span class="name">' + p.name + ' <span class="age">' + p.age + '歳</span></span><br>' +
-      '<span class="area">📍' + p.area + '</span> <span class="job">職種：' + p.job + '</span>' +
-      '<span class="tags">' + p.tags.map(function (t) { return '<span>' + t + '</span>'; }).join('') + '</span>' +
-      '<span class="stars">' + starText(p.stars) +
-      '<span class="stars-note">本人のおすすめ度（掲載者自己申告）</span></span>' +
-      '<span class="meta"><span>♥ ' + p.likes + '</span><span>更新：' + relTime(p.updatedMin) + '</span></span>' +
-      '</span></a>';
-  }).join('');
 }
 document.querySelectorAll('#sort-tabs button').forEach(function (b) {
   b.addEventListener('click', function () {
@@ -117,6 +221,8 @@ document.querySelectorAll('#job-tabs button').forEach(function (b) {
     document.getElementById('controls').style.display = isBoard ? 'block' : 'none';
     listEl.style.display = isBoard ? 'grid' : 'none';
     document.getElementById('empty').style.display = 'none';
+    var pr = document.querySelector('.pr-slot');
+    if (pr) pr.style.display = isBoard ? 'block' : 'none';
     if (isBoard) {
       note.style.display = 'none';
       render();
@@ -128,6 +234,7 @@ document.querySelectorAll('#job-tabs button').forEach(function (b) {
     }
   });
 });
+paintState();
 renderFresh();
 render();
 </script>

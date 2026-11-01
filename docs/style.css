@@ -191,3 +191,62 @@ footer.site a { color: var(--accent); }
   max-width: 88vw; text-align: center;
 }
 .toast.show { opacity: 1; transform: translateX(-50%) translateY(0); }
+
+/* --- 改善ラウンド追加 --- */
+.ai-label { white-space: nowrap; }
+.open-pill {
+  display: inline-block; margin-top: 6px; background: var(--open); color: #fff;
+  font-size: 11px; font-weight: 700; padding: 3px 9px; border-radius: 999px;
+}
+.detail-link {
+  display: block; margin-top: 8px; font-size: 12px; font-weight: 700; color: var(--accent);
+}
+.fb-note { font-size: 10px; color: var(--sub); margin-top: 6px; line-height: 1.5; }
+.pr-slot {
+  margin-top: 16px; border: 1px dashed var(--accent); border-radius: 12px;
+  background: var(--card); padding: 14px; display: flex; gap: 10px; align-items: flex-start;
+}
+.pr-slot .pr-tag {
+  background: var(--ink); color: #fff; font-size: 11px; font-weight: 700;
+  padding: 2px 8px; border-radius: 4px; white-space: nowrap;
+}
+.pr-slot p { font-size: 12px; color: var(--sub); }
+.owner-banner {
+  margin-top: 12px; background: var(--ink); color: #fff; text-align: center;
+  font-size: 13px; font-weight: 700; border-radius: 12px; padding: 11px 12px;
+}
+.footer-links {
+  display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; margin-bottom: 10px;
+}
+.footer-links a { font-size: 12px; text-decoration: underline; }
+.img-fallback {
+  position: absolute; inset: 0; display: flex; align-items: center; justify-content: center;
+  font-size: 44px; font-weight: 700; color: #fff;
+}
+.diary-latest { background: var(--accent-soft); border-radius: 8px; padding: 8px 10px !important; }
+.latest-badge {
+  background: var(--fresh); color: #fff; font-size: 10px; font-weight: 700;
+  padding: 1px 7px; border-radius: 999px; vertical-align: 2px;
+}
+details.diary-more summary {
+  cursor: pointer; font-size: 13px; color: var(--accent); padding: 8px 0 2px;
+}
+.info-list { list-style: disc; padding-left: 20px; font-size: 14px; }
+.info-list li { margin: 4px 0; }
+.switch-row {
+  display: flex; justify-content: space-between; align-items: center;
+  font-size: 14px; margin-top: 12px;
+}
+.switch { position: relative; display: inline-block; width: 52px; height: 30px; flex: none; }
+.switch input { opacity: 0; width: 0; height: 0; }
+.switch .slider {
+  position: absolute; inset: 0; background: #ccc; border-radius: 999px; cursor: pointer;
+  transition: background .2s;
+}
+.switch .slider:before {
+  content: ""; position: absolute; width: 24px; height: 24px; left: 3px; top: 3px;
+  background: #fff; border-radius: 50%; transition: transform .2s;
+}
+.switch input:checked + .slider { background: var(--open); }
+.switch input:checked + .slider:before { transform: translateX(22px); }
+.state-now { font-size: 12px; color: var(--sub); margin-top: 10px; }
