@@ -37,7 +37,7 @@
     <button data-job="すべて" class="on">すべて<small>全ジャンル</small></button>
     <button data-job="セラピスト">セラピスト<small>中心のジャンル</small></button>
     <button data-job="ネイリスト">ネイリスト<small>健全ジャンル</small></button>
-    <button data-job="その他">その他<small>上限はセラピストまで</small></button>
+    <button data-job="その他">その他<small>掲示板は範囲内だけ</small></button>
   </div>
   <div class="board-note" id="board-note" style="display:none"></div>
 
@@ -255,8 +255,8 @@ document.querySelectorAll('#job-tabs button').forEach(function (b) {
       render();
     } else {
       note.style.display = 'block';
-      note.innerHTML = '「<b>' + jobFilter + '</b>」のカードは、カードサイトで職種を選んで作れば、この掲示板にURLを載せられます。<br>' +
-        '今はまだ掲載がありません（デモ）。扱うジャンルは、健全ジャンル〜メディア系〜フリーセラピストまでが上限です。';
+      note.innerHTML = 'この掲示板に表示されるのは、決めた範囲（健全ジャンル〜メディア系〜フリーセラピスト）のカードだけです。<br>' +
+        '範囲外の職種のカードは、カードサイトに存在しても、この掲示板には出ません（デモ）。';
     }
   });
 });
