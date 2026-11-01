@@ -20,13 +20,13 @@
     <a href="dashboard.html">掲載者ダッシュボード（例）</a>
   </nav>
 
-  <!-- 職種の選択：開始時点では「セラピスト」のみ掲載。他職種は準備中 -->
+  <!-- 職種の選択：カードは職種を選べる汎用基盤。この掲示板の初期カテゴリは「セラピスト」のみ -->
   <div class="job-tabs" id="job-tabs">
-    <button data-job="therapist" class="on">セラピスト<small>掲載中</small></button>
-    <button data-job="golf" class="soon">ゴルフ同行<small>準備中</small></button>
-    <button data-job="other" class="soon">その他<small>準備中</small></button>
+    <button data-job="セラピスト" class="on">セラピスト<small>この掲示板の職種</small></button>
+    <button data-job="ゴルフ同行">ゴルフ同行<small>カードは選べます</small></button>
+    <button data-job="その他">その他<small>カードは選べます</small></button>
   </div>
-  <div class="soon-note" id="soon-note" style="display:none">この職種は準備中です。現在は「セラピスト」のみ掲載しています。</div>
+  <div class="board-note" id="board-note" style="display:none"></div>
 
   <!-- 鮮度の帯 -->
   <div class="fresh-band" id="fresh-band"></div>
@@ -106,13 +106,25 @@ document.querySelectorAll('#sort-tabs button').forEach(function (b) {
 document.getElementById('q').addEventListener('input', function (e) {
   query = e.target.value.trim(); render();
 });
+// 職種タブ：カード基盤は汎用。他職種のカードも作れるが、この掲示板（セラピスト専用）の一覧には出ない
 document.querySelectorAll('#job-tabs button').forEach(function (b) {
   b.addEventListener('click', function () {
-    if (b.classList.contains('soon')) {
-      document.getElementById('soon-note').style.display = 'block';
-      toast('その職種は準備中です（現在はセラピストのみ掲載）');
+    document.querySelectorAll('#job-tabs button').forEach(function (x) { x.classList.remove('on'); });
+    b.classList.add('on');
+    var note = document.getElementById('board-note');
+    var isBoard = b.dataset.job === 'セラピスト';
+    document.getElementById('fresh-band').style.display = isBoard ? 'block' : 'none';
+    document.getElementById('controls').style.display = isBoard ? 'block' : 'none';
+    listEl.style.display = isBoard ? 'grid' : 'none';
+    document.getElementById('empty').style.display = 'none';
+    if (isBoard) {
+      note.style.display = 'none';
+      render();
     } else {
-      document.getElementById('soon-note').style.display = 'none';
+      note.style.display = 'block';
+      note.innerHTML = '「<b>' + b.dataset.job + '</b>」のカードも、職種を選んで作成できます。<br>' +
+        'ただしこの掲示板は<b>セラピスト専用</b>のため、一覧には表示されません。<br>' +
+        '他職種のカードは、職種ごとの掲示板に掲載されます。';
     }
   });
 });

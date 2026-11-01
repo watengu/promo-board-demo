@@ -47,11 +47,11 @@ nav.menu a.on { background: var(--accent); color: #fff; border-color: var(--acce
 }
 .job-tabs button small { display: block; font-size: 10px; color: var(--sub); }
 .job-tabs button.on { border-color: var(--accent); background: var(--accent-soft); font-weight: 700; }
-.job-tabs button.soon { color: var(--sub); background: #f4efe9; cursor: not-allowed; }
-.soon-note {
+.board-note {
   margin-top: 10px; text-align: center; color: var(--sub); font-size: 13px;
-  background: var(--card); border: 1px dashed var(--line); border-radius: 12px; padding: 18px 10px;
+  background: var(--card); border: 1px dashed var(--line); border-radius: 12px; padding: 18px 12px;
 }
+.board-note b { color: var(--ink); }
 
 /* 鮮度の帯 */
 .fresh-band {
