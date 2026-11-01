@@ -164,7 +164,7 @@ footer.site a { color: var(--accent); }
 
 /* 年齢ゲート */
 #age-gate {
-  position: fixed; inset: 0; background: rgba(30, 25, 22, .92);
+  position: fixed; inset: 0; background: rgb(30, 25, 22);
   display: flex; align-items: center; justify-content: center; z-index: 50; padding: 18px;
 }
 .gate-box {

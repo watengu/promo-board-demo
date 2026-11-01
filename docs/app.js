@@ -1,9 +1,19 @@
 // 共通処理：年齢確認ゲート／簡易クリック計測（端末内 localStorage）／いいね・お気に入り
 (function () {
   // ---------- 年齢確認ゲート ----------
+  var AGE_OK_KEY = "age_ok";
+  var AGE_OK_TTL = 30 * 24 * 60 * 60 * 1000; // 通過記録の有効期限：30日
+  function agePassed() {
+    try {
+      var ts = parseInt(localStorage.getItem(AGE_OK_KEY) || "", 10);
+      return !isNaN(ts) && (Date.now() - ts) < AGE_OK_TTL;
+    } catch (e) {
+      return false;
+    }
+  }
   function buildGate() {
     var existing = document.getElementById("age-gate");
-    if (sessionStorage.getItem("age_ok") === "1") {
+    if (agePassed()) {
       if (existing) existing.remove();
       return;
     }
@@ -12,7 +22,7 @@
     if (!existing) ov.innerHTML =
       '<div class="gate-box">' +
       '<div class="gate-logo">フリーセラピスト掲示板<span>（デモ）</span></div>' +
-      '<p class="gate-lead">このサイトはフリーセラピストの宣伝リンク集です。</p>' +
+      '<p class="gate-lead">このサイトはフリーセラピストの宣伝リンク集です。成人向けの内容を含む場合があります。</p>' +
       '<p class="gate-q">あなたは18歳以上ですか？</p>' +
       '<button id="gate-yes" class="gate-btn yes">はい、18歳以上です</button>' +
       '<button id="gate-no" class="gate-btn no">いいえ</button>' +
@@ -22,13 +32,12 @@
     if (!existing) document.body.appendChild(ov);
     document.body.classList.add("gate-locked");
     document.getElementById("gate-yes").addEventListener("click", function () {
-      sessionStorage.setItem("age_ok", "1");
+      try { localStorage.setItem(AGE_OK_KEY, String(Date.now())); } catch (e) {}
       ov.remove();
       document.body.classList.remove("gate-locked");
     });
     document.getElementById("gate-no").addEventListener("click", function () {
-      document.getElementById("gate-msg").textContent =
-        "18歳未満の方はご利用いただけません。";
+      location.replace("https://www.google.co.jp/");
     });
   }
   if (document.readyState === "loading") {
