@@ -21,8 +21,8 @@
     ov.id = "age-gate";
     if (!existing) ov.innerHTML =
       '<div class="gate-box">' +
-      '<div class="gate-logo">フリーセラピスト掲示板<span>（デモ）</span></div>' +
-      '<p class="gate-lead">このサイトはフリーセラピストの宣伝リンク集です。成人向けの内容を含む場合があります。</p>' +
+      '<div class="gate-logo">おすすめURL掲示板<span>（デモ）</span></div>' +
+      '<p class="gate-lead">このサイトは宣伝URLの掲示板です。カードと外部サイトへのリンク集で、成人向けの内容を含む場合があります。</p>' +
       '<p class="gate-q">あなたは18歳以上ですか？</p>' +
       '<button id="gate-yes" class="gate-btn yes">はい、18歳以上です</button>' +
       '<button id="gate-no" class="gate-btn no">いいえ</button>' +

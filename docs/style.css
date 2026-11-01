@@ -250,3 +250,52 @@ details.diary-more summary {
 .switch input:checked + .slider { background: var(--open); }
 .switch input:checked + .slider:before { transform: translateX(22px); }
 .state-now { font-size: 12px; color: var(--sub); margin-top: 10px; }
+
+/* --- 2サイト分離・LP・編集ページ追加分 --- */
+.lp-hero { text-align: center; padding: 26px 6px 8px; }
+.lp-hero h1 { font-size: 24px; line-height: 1.45; letter-spacing: .02em; }
+.lp-hero h1 .hl { color: var(--accent); }
+.lp-hero .lead { font-size: 14px; color: var(--sub); margin-top: 10px; }
+.cta-row { display: flex; gap: 8px; flex-wrap: wrap; justify-content: center; margin-top: 16px; }
+.cta-row a {
+  padding: 11px 18px; border-radius: 999px; font-size: 14px; font-weight: 700;
+  border: 1px solid var(--accent); color: var(--accent); background: var(--card);
+}
+.cta-row a.primary { background: var(--accent); color: #fff; }
+.feat-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 14px; }
+@media (max-width: 380px) { .feat-grid { grid-template-columns: 1fr; } }
+.feat {
+  background: var(--card); border: 1px solid var(--line); border-radius: 14px; padding: 14px;
+}
+.feat .f-ico { font-size: 20px; }
+.feat .f-title { font-weight: 700; font-size: 14px; margin-top: 4px; }
+.feat .f-body { font-size: 12px; color: var(--sub); margin-top: 3px; }
+.lp-sec { margin-top: 22px; }
+.lp-sec > h2 { font-size: 16px; text-align: center; letter-spacing: .04em; }
+.lp-sec > p { font-size: 13px; color: var(--sub); text-align: center; margin-top: 6px; }
+.url-rows { display: grid; gap: 8px; margin-top: 10px; }
+.url-row {
+  display: flex; align-items: center; gap: 12px; background: var(--card);
+  border: 1px solid var(--line); border-radius: 12px; padding: 10px 14px;
+}
+.logo-chip {
+  width: 40px; height: 40px; flex: none; border-radius: 10px; color: #fff;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 18px; font-weight: 700;
+}
+.url-row .u-name { font-size: 14px; font-weight: 700; }
+.url-row .u-url { font-size: 11px; color: var(--sub); word-break: break-all; }
+.url-row .u-arrow { margin-left: auto; color: var(--accent); font-weight: 700; flex: none; }
+.sec-title { font-size: 15px; font-weight: 700; margin: 20px 2px 0; letter-spacing: .04em; }
+.sec-note { font-size: 11px; color: var(--sub); margin: 4px 2px 0; }
+.field { margin-top: 12px; }
+.field label { display: block; font-size: 12px; color: var(--sub); margin-bottom: 4px; }
+.field input, .field select {
+  width: 100%; padding: 11px 12px; font-size: 14px; border: 1px solid var(--line);
+  border-radius: 10px; background: var(--bg); color: var(--ink);
+}
+.field .hint { font-size: 11px; color: var(--sub); margin-top: 3px; }
+.form-note {
+  margin-top: 12px; font-size: 12px; color: var(--sub); background: var(--bg);
+  border: 1px dashed var(--line); border-radius: 10px; padding: 10px 12px;
+}

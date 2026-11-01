@@ -126,6 +126,27 @@ const PEOPLE = [
       { date: "2026-10-24", title: "10/24 恵比寿のお店めぐり", url: "#" }
     ],
     photos: ["images/p6-a.jpg", "images/p6-b.jpg"]
+  },
+  {
+    id: 7, name: "なな", area: "表参道", age: 25,
+    tags: ["ジェルネイル", "ニュアンス", "手描きアート"],
+    stars: 4, likes: 63, views: 890,
+    updatedMin: 180, updatedLabel: "本日 12:30 更新",
+    joinedDays: 10, openToday: false, mood: "🎨", streak: 2,
+    shop: "フリーネイリスト（レンタルサロン利用）",
+    style: "ニュアンスネイルと手描きアートが得意なフリーネイリスト。持ち込みデザインも歓迎です。",
+    height: "—", job: "ネイリスト", work: "フリー（レンタルサロン利用）",
+    links: [
+      { type: "home", label: "公式プロフィール（外部）", url: "#" },
+      { type: "blog", label: "作品日記（外部）", url: "#" },
+      { type: "sns", label: "SNS（外部）", url: "#" }
+    ],
+    diary: [
+      { date: "2026-11-01", title: "11/1 秋色ニュアンスのサンプル（外部ページ）", url: "#" },
+      { date: "2026-10-30", title: "10/30 ハロウィンネイルまとめ", url: "#" },
+      { date: "2026-10-27", title: "10/27 持ち込みデザインについて", url: "#" }
+    ],
+    photos: ["images/p7-a.jpg", "images/p7-b.jpg"]
   }
 ];
 
