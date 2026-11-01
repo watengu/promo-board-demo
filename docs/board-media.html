@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>メディア・インフルエンサー板｜おすすめURL掲示板（デモ）</title>
+<meta name="description" content="おすすめURL掲示板（デモ）のメディア・インフルエンサー板。フリーアナウンサー・インフルエンサー等のカードURLの置き場です。年齢確認なしで見られます。カード以外のURLは利用者が貼る一般の掲載として、ロゴとURLだけを表示します。">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="demo-banner">デモサイトです。掲載者・店舗・数値はすべて架空で、外部リンクはすべてダミーです。</div>
+<div class="wrap">
+  <header class="site">
+    <div class="logo">おすすめURL掲示板<span>デモ</span></div>
+    <p class="tagline">掲載は無料・URLだけ｜この掲示板は情報を持ちません（表示と数字はカード側・リンク先のものです）</p>
+  </header>
+
+  <nav class="menu">
+    <a href="index.html">入り口（板の一覧）</a>
+    <a href="board-relaxation.html">リラクゼーション板</a>
+    <a href="board-beauty.html">美容系板</a>
+    <a href="board-media.html" class="on">メディア板</a>
+    <a href="board-other.html">その他URL板</a>
+    <a href="https://watengu.github.io/profile-card-demo/">プロフィールカード（カードサイト）</a>
+  </nav>
+
+  <div class="board-head">
+    <h1>🎤 メディア・インフルエンサー板</h1>
+    <p>フリーアナウンサー・インフルエンサー等のメディア系の板です。この板は年齢確認なしで見られます。</p>
+  </div>
+
+  <div class="fresh-band" id="fresh-band">
+    <div class="fb-title">🔥 この板の新着</div>
+    <div class="fb-row">新着URL：<b>2件</b>（利用者が貼った一般の掲載） ／ カード掲載：<b>まだありません（デモ）</b></div>
+    <div class="fb-note">カードが載ると、この板にも鮮度の帯（今日更新・本日営業中）がカード単位で付きます。数字はカード側の持ち物です。</div>
+  </div>
+
+  <div class="controls" id="controls">
+    <input type="search" class="search-box" id="q" placeholder="URL掲載を名前で検索（例：アナウンサー）">
+    <div class="sort-tabs" id="sort-tabs">
+      <button data-sort="new" class="on">新着順</button>
+      <button data-sort="name">名前順</button>
+    </div>
+    <p class="result-count" id="result-count">URL掲載 2件（メディア板）／カード 0件</p>
+  </div>
+
+  <div class="board-note">
+    この板には、まだカードが載っていません（デモ）。<br>
+    メディア系の職種（フリーアナウンサー・インフルエンサー等）で作ったカードのURLが貼られると、ここにカードの見た目で表示され、リンク先はカードサイトの公開プロフィールページになります。
+    <div class="cta-row">
+      <a href="https://watengu.github.io/profile-card-demo/">カードを作る（カードサイトへ）→</a>
+    </div>
+  </div>
+
+  <h2 class="sec-title">利用者が貼ったURL（カード以外）</h2>
+  <p class="sec-note">運営枠ではありません。利用者が自由に貼った一般の掲載です。表示は先方のロゴとURLだけです。デモではリンク先はすべてダミー（#）です。</p>
+  <div class="url-rows" id="url-rows">
+    <a class="url-row" href="#" data-joined="2" data-name="フリーアナウンサー紹介（架空）"><span class="logo-chip" style="background:#8f6a3d">紹</span><span><span class="u-name">フリーアナウンサー紹介（架空）</span><br><span class="u-url">example.jp/casting（ダミーURL）</span></span><span class="u-arrow">→</span></a>
+    <a class="url-row" href="#" data-joined="9" data-name="インフルエンサー事務所一覧（架空）"><span class="logo-chip" style="background:#4a7a8c">事</span><span><span class="u-name">インフルエンサー事務所一覧（架空）</span><br><span class="u-url">example.jp/agency-list（ダミーURL）</span></span><span class="u-arrow">→</span></a>
+  </div>
+  <p class="empty" id="empty" style="display:none">条件に合うURL掲載がありません。</p>
+
+  <aside class="pr-slot">
+    <span class="pr-tag">PR</span>
+    <p>広告枠（ダミー）｜アフィリエイト広告の掲載位置のサンプルです。実際の広告はまだ掲載されていません。</p>
+  </aside>
+
+  <footer class="site">
+    <nav class="footer-links"><a href="terms.html">利用規約（仮）</a><a href="report.html">通報・削除の窓口</a><a href="about.html">運営者情報</a></nav>
+    この掲示板は情報を持ちません。カードの表示内容と数字は、カードサイト（プロフィールカード）の公開ページのものです。<br>
+    カード以外のURLは、利用者が貼った一般の掲載としてロゴとURLのみ表示します。連絡・予約・決済は各リンク先で行われます。<br>
+    掲載者・店舗はすべて架空のデモデータです。
+  </footer>
+</div>
+
+<script src="app.js"></script>
+<script>
+var rowsEl = document.getElementById('url-rows');
+var rowEls = Array.prototype.slice.call(rowsEl.querySelectorAll('.url-row'));
+var sortMode = 'new', query = '';
+function render() {
+  var q = query.toLowerCase();
+  var items = rowEls.filter(function (el) { return el.textContent.toLowerCase().indexOf(q) >= 0; });
+  if (sortMode === 'new') items.sort(function (a, b) { return (+a.dataset.joined) - (+b.dataset.joined); });
+  if (sortMode === 'name') items.sort(function (a, b) { return a.dataset.name < b.dataset.name ? -1 : 1; });
+  rowEls.forEach(function (el) { el.style.display = 'none'; });
+  items.forEach(function (el) { el.style.display = ''; rowsEl.appendChild(el); });
+  document.getElementById('empty').style.display = items.length ? 'none' : 'block';
+  document.getElementById('result-count').textContent = 'URL掲載 ' + items.length + '件（メディア板）／カード 0件';
+}
+document.querySelectorAll('#sort-tabs button').forEach(function (b) {
+  b.addEventListener('click', function () {
+    document.querySelectorAll('#sort-tabs button').forEach(function (x) { x.classList.remove('on'); });
+    b.classList.add('on'); sortMode = b.dataset.sort; render();
+  });
+});
+document.getElementById('q').addEventListener('input', function (e) {
+  query = e.target.value.trim(); render();
+});
+render();
+</script>
+</body>
+</html>

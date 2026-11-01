@@ -299,3 +299,31 @@ details.diary-more summary {
   margin-top: 12px; font-size: 12px; color: var(--sub); background: var(--bg);
   border: 1px dashed var(--line); border-radius: 10px; padding: 10px 12px;
 }
+
+/* --- ジャンル板構造（2026-11-01 追加） --- */
+.board-list { display: grid; gap: 10px; margin-top: 14px; }
+.board-item {
+  display: flex; gap: 12px; align-items: flex-start; background: var(--card);
+  border: 1px solid var(--line); border-radius: 14px; padding: 14px;
+}
+.board-item .b-ico { font-size: 24px; line-height: 1.2; }
+.board-item .b-main { flex: 1; }
+.board-item .b-name { font-size: 16px; font-weight: 700; }
+.board-item .b-desc { font-size: 12px; color: var(--sub); margin-top: 2px; }
+.board-item .b-meta { font-size: 11px; color: var(--sub); margin-top: 6px; display: flex; gap: 6px; flex-wrap: wrap; }
+.pill {
+  display: inline-block; font-size: 10px; font-weight: 700; padding: 2px 8px;
+  border-radius: 999px; border: 1px solid var(--line); background: var(--bg); color: var(--sub);
+}
+.pill.gate { background: #fdeceb; border-color: #f3c1bc; color: var(--fresh); }
+.pill.free { background: #e8f5ee; border-color: #bfe3d0; color: var(--open); }
+.board-item .b-arrow { color: var(--accent); font-weight: 700; align-self: center; }
+.cross-fresh {
+  margin-top: 14px; background: var(--accent-soft); border-radius: 12px;
+  padding: 10px 14px; font-size: 12px;
+}
+.cross-fresh .cf-title { font-weight: 700; color: var(--fresh); }
+.board-head { margin-top: 14px; text-align: center; }
+.board-head h1 { font-size: 20px; letter-spacing: .03em; }
+.board-head p { font-size: 12px; color: var(--sub); margin-top: 4px; }
+.gate-badge-note { font-size: 11px; color: var(--fresh); font-weight: 700; margin-top: 6px; }

@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>リラクゼーション板｜おすすめURL掲示板（デモ）</title>
+<meta name="description" content="おすすめURL掲示板（デモ）のリラクゼーション板。フリーセラピストのカードURLをカードの見た目で表示し、リンク先はカードサイトの公開プロフィールページです。カード以外のURLは利用者が貼る一般の掲載として、ロゴとURLだけを表示します。">
+<link rel="stylesheet" href="style.css">
+</head>
+<body data-needs-gate="1">
+<div id="age-gate">
+  <div class="gate-box">
+    <div class="gate-logo">リラクゼーション板<span>（デモ）</span></div>
+    <p class="gate-lead">この板には、成人向けの内容を含む宣伝が掲載される場合があります。</p>
+    <p class="gate-q">あなたは18歳以上ですか？</p>
+    <button id="gate-yes" class="gate-btn yes">はい、18歳以上です</button>
+    <button id="gate-no" class="gate-btn no">いいえ</button>
+    <p id="gate-msg" class="gate-msg"></p>
+    <p class="gate-note">※これはデモサイトです。掲載者・店舗・数値はすべて架空で、写真はAI生成画像を使用しています。年齢確認はこの板の入口だけに置いています（他の板は確認なしで見られます）。</p>
+  </div>
+</div>
+<div class="demo-banner">デモサイトです。掲載者・店舗・数値はすべて架空で、外部リンクはすべてダミーです。</div>
+<div class="wrap">
+  <header class="site">
+    <div class="logo">おすすめURL掲示板<span>デモ</span></div>
+    <p class="tagline">掲載は無料・URLだけ｜この掲示板は情報を持ちません（表示と数字はカード側・リンク先のものです）</p>
+  </header>
+
+  <nav class="menu">
+    <a href="index.html">入り口（板の一覧）</a>
+    <a href="board-relaxation.html" class="on">リラクゼーション板</a>
+    <a href="board-beauty.html">美容系板</a>
+    <a href="board-media.html">メディア板</a>
+    <a href="board-other.html">その他URL板</a>
+    <a href="https://watengu.github.io/profile-card-demo/">プロフィールカード（カードサイト）</a>
+  </nav>
+
+  <div class="board-head">
+    <h1>💆 リラクゼーション板</h1>
+    <p>フリーセラピストのカードが中心の板です。カードの見た目と数字は、すべてカードサイト側の公開ページのものです。</p>
+    <p class="gate-badge-note">この板の入口には年齢確認があります</p>
+  </div>
+
+  <!-- 鮮度の帯（この板の分だけ・件数主体・名前は最大3名） -->
+  <div class="fresh-band" id="fresh-band">
+    <div class="fb-title">🔥 この板も動いています</div>
+    <div class="fb-row">今日更新：<b>4件</b>（りお・ゆき・みゆ ほか）</div>
+    <div class="fb-row">24時間以内の更新：<b>4件</b> ／ 本日営業中：<b>4名</b></div>
+    <div class="fb-note">今日更新＝本人が「更新しました」を押したカード／24時間以内＝更新から24時間以内／本日営業中＝掲載者の自己申告です（営業実態をシステムが確認したものではありません）</div>
+  </div>
+
+  <div class="controls" id="controls">
+    <input type="search" class="search-box" id="q" placeholder="名前・エリア・タグで検索（例：銀座、アロマ）">
+    <div class="sort-tabs" id="sort-tabs">
+      <button data-sort="new" class="on">新着順</button>
+      <button data-sort="updated">更新順</button>
+      <button data-sort="random">ランダム順</button>
+    </div>
+    <p class="result-count" id="result-count">カード 6件（リラクゼーション板）</p>
+  </div>
+
+  <!-- カード一覧は初期HTMLに焼き込み済み（JSなしでも表示される）。リンクと写真はカードサイト（サイトB）の絶対URL -->
+  <main class="grid" id="list">
+    <a class="p-card" href="https://watengu.github.io/profile-card-demo/card/2.html" data-id="2" data-job="セラピスト" data-joined="3" data-updated="130" data-open="1" data-hay="みゆ 新宿 リンパ ヘッドスパ メゾンロゼ新宿（架空）">
+      <span class="ph"><img src="https://watengu.github.io/profile-card-demo/images/p2-a.jpg" alt="みゆの写真（AI生成）" data-name="みゆ" data-color="#7a9e7e" onerror="imgFallback(this)"><span class="new-badge">NEW</span><span class="ai-label">AI生成</span></span>
+      <span class="body">
+      <span class="name">みゆ <span class="age">24歳</span></span><br>
+      <span class="area">📍新宿</span> <span class="job">職種：セラピスト</span>
+      <span class="tags"><span>リンパ</span><span>ヘッドスパ</span></span>
+      <span class="open-pill" data-open-badge>本日営業中（掲載者申告）</span>
+      <span class="stars">⭐⭐⭐⭐☆<span class="stars-note">本人のおすすめ度（掲載者自己申告）</span></span>
+      <span class="meta"><span>♥ 86</span><span class="upd-time">更新：2時間前</span></span>
+      <span class="detail-link">プロフィールカードを見る（カードサイトへ）→</span>
+      </span></a>
+    <a class="p-card" href="https://watengu.github.io/profile-card-demo/card/6.html" data-id="6" data-job="セラピスト" data-joined="7" data-updated="75" data-open="1" data-hay="ゆき 恵比寿 オイル 夜型 フェイシャル サロン・ルーチェ恵比寿（架空）">
+      <span class="ph"><img src="https://watengu.github.io/profile-card-demo/images/p6-a.jpg" alt="ゆきの写真（AI生成）" data-name="ゆき" data-color="#4a7a8c" onerror="imgFallback(this)"><span class="new-badge">NEW</span><span class="ai-label">AI生成</span></span>
+      <span class="body">
+      <span class="name">ゆき <span class="age">25歳</span></span><br>
+      <span class="area">📍恵比寿</span> <span class="job">職種：セラピスト</span>
+      <span class="tags"><span>オイル</span><span>夜型</span><span>フェイシャル</span></span>
+      <span class="open-pill" data-open-badge>本日営業中（掲載者申告）</span>
+      <span class="stars">⭐⭐⭐⭐⭐<span class="stars-note">本人のおすすめ度（掲載者自己申告）</span></span>
+      <span class="meta"><span>♥ 167</span><span class="upd-time">更新：1時間前</span></span>
+      <span class="detail-link">プロフィールカードを見る（カードサイトへ）→</span>
+      </span></a>
+    <a class="p-card" href="https://watengu.github.io/profile-card-demo/card/4.html" data-id="4" data-job="セラピスト" data-joined="12" data-updated="1500" data-open="1" data-hay="あかり 池袋 アロマ ホットストーン メゾンクレール池袋（架空）">
+      <span class="ph"><img src="https://watengu.github.io/profile-card-demo/images/p4-a.jpg" alt="あかりの写真（AI生成）" data-name="あかり" data-color="#a65b8f" onerror="imgFallback(this)"><span class="ai-label">AI生成</span></span>
+      <span class="body">
+      <span class="name">あかり <span class="age">23歳</span></span><br>
+      <span class="area">📍池袋</span> <span class="job">職種：セラピスト</span>
+      <span class="tags"><span>アロマ</span><span>ホットストーン</span></span>
+      <span class="open-pill" data-open-badge>本日営業中（掲載者申告）</span>
+      <span class="stars">⭐⭐⭐⭐☆<span class="stars-note">本人のおすすめ度（掲載者自己申告）</span></span>
+      <span class="meta"><span>♥ 57</span><span class="upd-time">更新：1日前</span></span>
+      <span class="detail-link">プロフィールカードを見る（カードサイトへ）→</span>
+      </span></a>
+    <a class="p-card" href="https://watengu.github.io/profile-card-demo/card/1.html" data-id="1" data-job="セラピスト" data-joined="21" data-updated="40" data-open="1" data-hay="りお 銀座 アロマ オイル 深夜ok サロン・フィオーレ銀座（架空）">
+      <span class="ph"><img src="https://watengu.github.io/profile-card-demo/images/p1-a.jpg" alt="りおの写真（AI生成）" data-name="りお" data-color="#c96f4a" onerror="imgFallback(this)"><span class="ai-label">AI生成</span></span>
+      <span class="body">
+      <span class="name">りお <span class="age">26歳</span></span><br>
+      <span class="area">📍銀座</span> <span class="job">職種：セラピスト</span>
+      <span class="tags"><span>アロマ</span><span>オイル</span><span>深夜OK</span></span>
+      <span class="open-pill" data-open-badge>本日営業中（掲載者申告）</span>
+      <span class="stars">⭐⭐⭐⭐⭐<span class="stars-note">本人のおすすめ度（掲載者自己申告）</span></span>
+      <span class="meta"><span>♥ 128</span><span class="upd-time">更新：40分前</span></span>
+      <span class="detail-link">プロフィールカードを見る（カードサイトへ）→</span>
+      </span></a>
+    <a class="p-card" href="https://watengu.github.io/profile-card-demo/card/3.html" data-id="3" data-job="セラピスト" data-joined="45" data-updated="300" data-open="0" data-hay="さくら 六本木 整体 ストレッチ 指圧 サロン・セレッソ六本木（架空）">
+      <span class="ph"><img src="https://watengu.github.io/profile-card-demo/images/p3-a.jpg" alt="さくらの写真（AI生成）" data-name="さくら" data-color="#5b7fa6" onerror="imgFallback(this)"><span class="ai-label">AI生成</span></span>
+      <span class="body">
+      <span class="name">さくら <span class="age">28歳</span></span><br>
+      <span class="area">📍六本木</span> <span class="job">職種：セラピスト</span>
+      <span class="tags"><span>整体</span><span>ストレッチ</span><span>指圧</span></span>
+      <span class="open-pill" data-open-badge style="display:none">本日営業中（掲載者申告）</span>
+      <span class="stars">⭐⭐⭐⭐⭐<span class="stars-note">本人のおすすめ度（掲載者自己申告）</span></span>
+      <span class="meta"><span>♥ 203</span><span class="upd-time">更新：5時間前</span></span>
+      <span class="detail-link">プロフィールカードを見る（カードサイトへ）→</span>
+      </span></a>
+    <a class="p-card" href="https://watengu.github.io/profile-card-demo/card/5.html" data-id="5" data-job="セラピスト" data-joined="60" data-updated="2900" data-open="0" data-hay="かえで 渋谷 リフレクソロジー 読書好き ミルフィーユ渋谷（架空）">
+      <span class="ph"><img src="https://watengu.github.io/profile-card-demo/images/p5-a.jpg" alt="かえでの写真（AI生成）" data-name="かえで" data-color="#8f6a3d" onerror="imgFallback(this)"><span class="ai-label">AI生成</span></span>
+      <span class="body">
+      <span class="name">かえで <span class="age">27歳</span></span><br>
+      <span class="area">📍渋谷</span> <span class="job">職種：セラピスト</span>
+      <span class="tags"><span>リフレクソロジー</span><span>読書好き</span></span>
+      <span class="open-pill" data-open-badge style="display:none">本日営業中（掲載者申告）</span>
+      <span class="stars">⭐⭐⭐☆☆<span class="stars-note">本人のおすすめ度（掲載者自己申告）</span></span>
+      <span class="meta"><span>♥ 41</span><span class="upd-time">更新：2日前</span></span>
+      <span class="detail-link">プロフィールカードを見る（カードサイトへ）→</span>
+      </span></a>
+  </main>
+  <p class="empty" id="empty" style="display:none">条件に合うカードがありません。</p>
+
+  <h2 class="sec-title">利用者が貼ったURL（カード以外）</h2>
+  <p class="sec-note">運営枠ではありません。利用者が自由に貼った一般の掲載です。外部サイトのURLも貼れます。表示は先方のロゴとURLだけです（写真やプロフィールは持ちません）。デモではリンク先はすべてダミー（#）です。</p>
+  <div class="url-rows" id="url-rows">
+    <a class="url-row" href="#"><span class="logo-chip" style="background:#5b7fa6">シ</span><span><span class="u-name">シティヘブン</span><br><span class="u-url">www.cityheaven.net（表示のみ・デモでは飛びません）</span></span><span class="u-arrow">→</span></a>
+    <a class="url-row" href="#"><span class="logo-chip" style="background:#7a9e7e">検</span><span><span class="u-name">リラクゼーションサロン検索（架空）</span><br><span class="u-url">example.jp/salon-search（ダミーURL）</span></span><span class="u-arrow">→</span></a>
+    <a class="url-row" href="#"><span class="logo-chip" style="background:#a65b8f">案</span><span><span class="u-name">出張マッサージ案内（架空）</span><br><span class="u-url">example.jp/trip-massage（ダミーURL）</span></span><span class="u-arrow">→</span></a>
+  </div>
+
+  <aside class="pr-slot">
+    <span class="pr-tag">PR</span>
+    <p>広告枠（ダミー）｜アフィリエイト広告の掲載位置のサンプルです。実際の広告はまだ掲載されていません。</p>
+  </aside>
+
+  <footer class="site">
+    <nav class="footer-links"><a href="terms.html">利用規約（仮）</a><a href="report.html">通報・削除の窓口</a><a href="about.html">運営者情報</a></nav>
+    この掲示板は情報を持ちません。カードの表示内容と数字は、カードサイト（プロフィールカード）の公開ページのものです。<br>
+    カード以外のURLは、利用者が貼った一般の掲載としてロゴとURLのみ表示します。連絡・予約・決済は各リンク先で行われます。<br>
+    写真はAI生成画像を使用しています（各写真に「AI生成」表記）。掲載者・店舗はすべて架空のデモデータです。
+  </footer>
+</div>
+
+<script src="data.js"></script>
+<script src="app.js"></script>
+<script>
+var listEl = document.getElementById('list');
+var sortMode = 'new', query = '';
+var cardEls = Array.prototype.slice.call(listEl.querySelectorAll('.p-card'));
+function effUpd(el) {
+  var st = getCardState(+el.dataset.id);
+  if (st && st.updatedAt) return Math.max(0, Math.round((Date.now() - st.updatedAt) / 60000));
+  return +el.dataset.updated;
+}
+function effOpen(el) {
+  var st = getCardState(+el.dataset.id);
+  if (st && typeof st.open === 'boolean') return st.open;
+  return el.dataset.open === '1';
+}
+function byId(id) { return PEOPLE.find(function (p) { return p.id === id; }); }
+function renderFresh() {
+  var items = cardEls.map(function (el) {
+    return { p: byId(+el.dataset.id), upd: effUpd(el), open: effOpen(el) };
+  });
+  var today = items.filter(function (x) { return x.upd < 1440; })
+                   .sort(function (a, b) { return a.upd - b.upd; });
+  var within24 = items.filter(function (x) { return x.upd <= 1440; });
+  var open = items.filter(function (x) { return x.open; });
+  var names = today.slice(0, 3).map(function (x) { return x.p.name; }).join('・');
+  if (today.length > 3) names += ' ほか';
+  document.getElementById('fresh-band').innerHTML =
+    '<div class="fb-title">🔥 この板も動いています</div>' +
+    '<div class="fb-row">今日更新：<b>' + today.length + '件</b>' +
+    (today.length ? '（' + names + '）' : '') + '</div>' +
+    '<div class="fb-row">24時間以内の更新：<b>' + within24.length + '件</b> ／ 本日営業中：<b>' + open.length + '名</b></div>' +
+    '<div class="fb-note">今日更新＝本人が「更新しました」を押したカード／24時間以内＝更新から24時間以内／本日営業中＝掲載者の自己申告です（営業実態をシステムが確認したものではありません）</div>';
+}
+function paintState() {
+  cardEls.forEach(function (el) {
+    var badge = el.querySelector('[data-open-badge]');
+    if (badge) badge.style.display = effOpen(el) ? '' : 'none';
+    var upd = el.querySelector('.upd-time');
+    if (upd) upd.textContent = '更新：' + relTime(effUpd(el));
+  });
+}
+function render() {
+  var q = query.toLowerCase();
+  var items = cardEls.filter(function (el) { return el.dataset.hay.indexOf(q) >= 0; });
+  if (sortMode === 'new') items.sort(function (a, b) { return (+a.dataset.joined) - (+b.dataset.joined); });
+  if (sortMode === 'updated') items.sort(function (a, b) { return effUpd(a) - effUpd(b); });
+  if (sortMode === 'random') items.sort(function () { return Math.random() - 0.5; });
+  cardEls.forEach(function (el) { el.style.display = 'none'; });
+  items.forEach(function (el) { el.style.display = ''; listEl.appendChild(el); });
+  document.getElementById('empty').style.display = items.length ? 'none' : 'block';
+  document.getElementById('result-count').textContent = 'カード ' + items.length + '件（リラクゼーション板）';
+}
+document.querySelectorAll('#sort-tabs button').forEach(function (b) {
+  b.addEventListener('click', function () {
+    document.querySelectorAll('#sort-tabs button').forEach(function (x) { x.classList.remove('on'); });
+    b.classList.add('on'); sortMode = b.dataset.sort; render();
+  });
+});
+document.getElementById('q').addEventListener('input', function (e) {
+  query = e.target.value.trim(); render();
+});
+paintState();
+renderFresh();
+render();
+</script>
+</body>
+</html>

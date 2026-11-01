@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>その他URL板｜おすすめURL掲示板（デモ）</title>
+<meta name="description" content="おすすめURL掲示板（デモ）のその他URL板。どの板にも当てはまらないURLの置き場です。利用者が貼る一般の掲載として、ロゴとURLだけを表示します。年齢確認なしで見られます。">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="demo-banner">デモサイトです。掲載者・店舗・数値はすべて架空で、外部リンクはすべてダミーです。</div>
+<div class="wrap">
+  <header class="site">
+    <div class="logo">おすすめURL掲示板<span>デモ</span></div>
+    <p class="tagline">掲載は無料・URLだけ｜この掲示板は情報を持ちません（表示はリンク先のものです）</p>
+  </header>
+
+  <nav class="menu">
+    <a href="index.html">入り口（板の一覧）</a>
+    <a href="board-relaxation.html">リラクゼーション板</a>
+    <a href="board-beauty.html">美容系板</a>
+    <a href="board-media.html">メディア板</a>
+    <a href="board-other.html" class="on">その他URL板</a>
+    <a href="https://watengu.github.io/profile-card-demo/">プロフィールカード（カードサイト）</a>
+  </nav>
+
+  <div class="board-head">
+    <h1>🔗 その他URL板</h1>
+    <p>どの板にも当てはまらないURLの置き場です。この板は年齢確認なしで見られます。</p>
+  </div>
+
+  <div class="fresh-band" id="fresh-band">
+    <div class="fb-title">🔥 この板の新着</div>
+    <div class="fb-row">新着URL：<b>4件</b>（利用者が貼った一般の掲載）</div>
+    <div class="fb-note">この板の掲載はすべて「利用者が貼ったURL」です。運営が選んだ枠ではありません。</div>
+  </div>
+
+  <div class="controls" id="controls">
+    <input type="search" class="search-box" id="q" placeholder="URL掲載を名前で検索（例：Yahoo）">
+    <div class="sort-tabs" id="sort-tabs">
+      <button data-sort="new" class="on">新着順</button>
+      <button data-sort="name">名前順</button>
+    </div>
+    <p class="result-count" id="result-count">URL掲載 4件（その他URL板）</p>
+  </div>
+
+  <h2 class="sec-title">利用者が貼ったURL</h2>
+  <p class="sec-note">運営枠ではありません。利用者が自由に貼った一般の掲載です。Yahoo! など外部サイトのURLも貼れます。表示は先方のロゴとURLだけです。デモではリンク先はすべてダミー（#）で、実際のサイトには飛びません。</p>
+  <div class="url-rows" id="url-rows">
+    <a class="url-row" href="#" data-joined="1" data-name="Yahoo! JAPAN"><span class="logo-chip" style="background:#ff0033">Y!</span><span><span class="u-name">Yahoo! JAPAN</span><br><span class="u-url">www.yahoo.co.jp（表示のみ・デモでは飛びません）</span></span><span class="u-arrow">→</span></a>
+    <a class="url-row" href="#" data-joined="4" data-name="Google"><span class="logo-chip" style="background:#4285f4">G</span><span><span class="u-name">Google</span><br><span class="u-url">www.google.co.jp（表示のみ・デモでは飛びません）</span></span><span class="u-arrow">→</span></a>
+    <a class="url-row" href="#" data-joined="6" data-name="エステ・ネイル求人情報（架空）"><span class="logo-chip" style="background:#a65b8f">求</span><span><span class="u-name">エステ・ネイル求人情報（架空）</span><br><span class="u-url">example.jp/job-navi（ダミーURL）</span></span><span class="u-arrow">→</span></a>
+    <a class="url-row" href="#" data-joined="11" data-name="動画配信サービス（架空）"><span class="logo-chip" style="background:#5b7fa6">動</span><span><span class="u-name">動画配信サービス（架空）</span><br><span class="u-url">example.jp/streaming（ダミーURL）</span></span><span class="u-arrow">→</span></a>
+  </div>
+  <p class="empty" id="empty" style="display:none">条件に合うURL掲載がありません。</p>
+
+  <aside class="pr-slot">
+    <span class="pr-tag">PR</span>
+    <p>広告枠（ダミー）｜アフィリエイト広告の掲載位置のサンプルです。実際の広告はまだ掲載されていません。</p>
+  </aside>
+
+  <footer class="site">
+    <nav class="footer-links"><a href="terms.html">利用規約（仮）</a><a href="report.html">通報・削除の窓口</a><a href="about.html">運営者情報</a></nav>
+    この掲示板は情報を持ちません。URL掲載は利用者が貼った一般の掲載で、表示はロゴとURLのみです。連絡・予約・決済は各リンク先で行われます。<br>
+    掲載者・店舗はすべて架空のデモデータです。
+  </footer>
+</div>
+
+<script src="app.js"></script>
+<script>
+var rowsEl = document.getElementById('url-rows');
+var rowEls = Array.prototype.slice.call(rowsEl.querySelectorAll('.url-row'));
+var sortMode = 'new', query = '';
+function render() {
+  var q = query.toLowerCase();
+  var items = rowEls.filter(function (el) { return el.textContent.toLowerCase().indexOf(q) >= 0; });
+  if (sortMode === 'new') items.sort(function (a, b) { return (+a.dataset.joined) - (+b.dataset.joined); });
+  if (sortMode === 'name') items.sort(function (a, b) { return a.dataset.name < b.dataset.name ? -1 : 1; });
+  rowEls.forEach(function (el) { el.style.display = 'none'; });
+  items.forEach(function (el) { el.style.display = ''; rowsEl.appendChild(el); });
+  document.getElementById('empty').style.display = items.length ? 'none' : 'block';
+  document.getElementById('result-count').textContent = 'URL掲載 ' + items.length + '件（その他URL板）';
+}
+document.querySelectorAll('#sort-tabs button').forEach(function (b) {
+  b.addEventListener('click', function () {
+    document.querySelectorAll('#sort-tabs button').forEach(function (x) { x.classList.remove('on'); });
+    b.classList.add('on'); sortMode = b.dataset.sort; render();
+  });
+});
+document.getElementById('q').addEventListener('input', function (e) {
+  query = e.target.value.trim(); render();
+});
+render();
+</script>
+</body>
+</html>

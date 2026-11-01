@@ -1,6 +1,9 @@
-// 共通処理：年齢確認ゲート／簡易クリック計測（端末内 localStorage）／いいね・お気に入り
+// 共通処理：年齢確認ゲート（板ごとに設置。data-needs-gate="1" のページだけ）／簡易クリック計測（端末内 localStorage）／いいね・お気に入り
 (function () {
-  // ---------- 年齢確認ゲート ----------
+  // ---------- 年齢確認ゲート（板単位） ----------
+  // 全体ゲートは廃止。ゲートが必要な板（リラクゼーション板）のページだけ
+  // <body data-needs-gate="1"> と #age-gate マークアップを持ち、この処理が働く。
+  // 健全ジャンルの板・LP・その他のページではゲートは出ない。
   var AGE_OK_KEY = "age_ok";
   var AGE_OK_TTL = 30 * 24 * 60 * 60 * 1000; // 通過記録の有効期限：30日
   function agePassed() {
@@ -13,6 +16,11 @@
   }
   function buildGate() {
     var existing = document.getElementById("age-gate");
+    var needs = document.body && document.body.getAttribute("data-needs-gate") === "1";
+    if (!needs) {
+      if (existing) existing.remove();
+      return;
+    }
     if (agePassed()) {
       if (existing) existing.remove();
       return;
@@ -21,8 +29,8 @@
     ov.id = "age-gate";
     if (!existing) ov.innerHTML =
       '<div class="gate-box">' +
-      '<div class="gate-logo">おすすめURL掲示板<span>（デモ）</span></div>' +
-      '<p class="gate-lead">このサイトは宣伝URLの掲示板です。カードと外部サイトへのリンク集で、成人向けの内容を含む場合があります。</p>' +
+      '<div class="gate-logo">リラクゼーション板<span>（デモ）</span></div>' +
+      '<p class="gate-lead">この板には、成人向けの内容を含む宣伝が掲載される場合があります。</p>' +
       '<p class="gate-q">あなたは18歳以上ですか？</p>' +
       '<button id="gate-yes" class="gate-btn yes">はい、18歳以上です</button>' +
       '<button id="gate-no" class="gate-btn no">いいえ</button>' +
@@ -89,7 +97,7 @@ function toast(msg) {
 }
 
 // ---------- 画像フォールバック（イニシャル＋色プレースホルダ） ----------
-var PH_COLORS = {1: "#c96f4a", 2: "#7a9e7e", 3: "#5b7fa6", 4: "#a65b8f", 5: "#8f6a3d", 6: "#4a7a8c"};
+var PH_COLORS = {1: "#c96f4a", 2: "#7a9e7e", 3: "#5b7fa6", 4: "#a65b8f", 5: "#8f6a3d", 6: "#4a7a8c", 7: "#b0526b"};
 function phColor(id) { return PH_COLORS[id] || "#999"; }
 function imgFallback(img) {
   if (!img || img.dataset.fbDone) return;
