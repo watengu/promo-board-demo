@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>プロフィールカード｜フリーセラピスト掲示板（デモ）</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="demo-banner">デモサイトです。掲載者・店舗・数値はすべて架空で、外部リンクはすべてダミーです。</div>
+<div class="wrap">
+  <main id="detail"></main>
+  <a class="back" href="index.html">← 掲示板にもどる</a>
+  <footer class="site">
+    このカードが掲載の本体です。掲示板の一覧はこのカードの内容をそのまま表示しています。<br>
+    連絡・予約・決済は各リンク先（本人のページ）で行われます。写真はAI生成画像です。
+  </footer>
+</div>
+<script src="data.js"></script>
+<script src="app.js"></script>
+<script>
+if (sessionStorage.getItem('age_ok') !== '1') { location.href = 'index.html'; }
+var id = +new URLSearchParams(location.search).get('id') || 1;
+var p = PEOPLE.find(function (x) { return x.id === id; }) || PEOPLE[0];
+document.title = p.name + '｜プロフィールカード（デモ）';
+
+var liked = getStore('liked_' + p.id, false);
+var faved = getStore('fav_' + p.id, false);
+
+var el = document.getElementById('detail');
+el.innerHTML =
+  '<header class="site" style="text-align:left">' +
+  '<div class="logo" style="font-size:20px">' + p.name + ' <span style="margin:0;font-size:13px;color:var(--sub)">' + p.age + '歳｜' + p.area + '</span></div>' +
+  '<p class="tagline" style="text-align:left">' + p.shop + '｜<span class="update-note">更新しました：' + p.updatedLabel + '（' + relTime(p.updatedMin) + '）</span></p>' +
+  (p.openToday ? '<p style="margin-top:6px"><span class="open-badge" style="position:static">本日営業中</span></p>' : '') +
+  '</header>' +
+  '<div class="photo-row">' +
+  p.photos.map(function (src) {
+    return '<span class="photo-cell"><img src="' + src + '" alt="' + p.name + 'の写真（AI生成）"><span class="ai-label">AI生成</span></span>';
+  }).join('') +
+  '</div>' +
+  '<p style="font-size:11px;color:var(--sub);margin-top:6px">※ 写真はAI生成画像です（実在の人物ではありません）。</p>' +
+  '<div style="margin-top:10px;font-size:13px">' + starText(p.stars) +
+  ' <span style="font-size:11px;color:var(--sub)">本人のおすすめ度（掲載者自己申告）｜今日の気分 ' + p.mood + (p.streak ? '｜更新 ' + p.streak + '日連続' : '') + '</span></div>' +
+  '<div class="btn-row">' +
+  '<button class="btn" id="like-btn">♥ いいね <span id="like-num">' + (p.likes + (liked ? 1 : 0)) + '</span></button>' +
+  '<button class="btn" id="fav-btn">★ お気に入り</button>' +
+  '<button class="btn primary" id="share-btn">シェア</button>' +
+  '</div>' +
+  '<section class="block"><h2>プロフィール</h2><dl class="kv">' +
+  '<dt>名前</dt><dd>' + p.name + '</dd>' +
+  '<dt>職種</dt><dd>' + p.job + '（選択式）</dd>' +
+  '<dt>活動形態</dt><dd>' + p.work + '</dd>' +
+  '<dt>エリア</dt><dd>' + p.area + '</dd>' +
+  '<dt>身長</dt><dd>' + p.height + '</dd>' +
+  '<dt>タグ</dt><dd>' + p.tags.join('／') + '</dd>' +
+  '<dt>ひとこと</dt><dd>' + p.style + '</dd>' +
+  '</dl></section>' +
+  '<section class="block"><h2>所属店舗</h2><dl class="kv">' +
+  '<dt>店舗名</dt><dd>' + p.shop + '</dd></dl>' +
+  '<div class="ext-links" style="margin-top:10px"><a data-ext="shop">店舗ページを見る（外部リンク・ダミー）<span class="cnt"></span></a></div></section>' +
+  '<section class="block"><h2>写メ日記（外部ページへのリンク）</h2><ul class="diary-list">' +
+  p.diary.map(function (d) {
+    return '<li data-diary><span class="d-date">' + d.date + '</span>' + d.title + '</li>';
+  }).join('') +
+  '</ul></section>' +
+  '<section class="block"><h2>その他のリンク（外部）</h2><div class="ext-links">' +
+  p.links.map(function (l) {
+    return '<a data-ext="' + l.type + '">' + l.label + '<span class="cnt" data-cnt="' + l.type + '"></span></a>';
+  }).join('') +
+  '</div><p style="font-size:11px;color:var(--sub);margin-top:8px">※ 外部リンクは計測用の中継を経由する設計です（デモでは端末内でクリック数を数えています）。</p></section>';
+
+var likeBtn = document.getElementById('like-btn');
+function paintLike() {
+  document.getElementById('like-num').textContent = p.likes + (liked ? 1 : 0);
+  likeBtn.classList.toggle('active', liked);
+}
+likeBtn.addEventListener('click', function () {
+  liked = !liked; setStore('liked_' + p.id, liked); paintLike();
+});
+paintLike();
+var favBtn = document.getElementById('fav-btn');
+function paintFav() { favBtn.classList.toggle('active', faved); favBtn.textContent = faved ? '★ お気に入り済み' : '★ お気に入り'; }
+favBtn.addEventListener('click', function () {
+  faved = !faved; setStore('fav_' + p.id, faved); paintFav();
+  toast(faved ? 'お気に入りに保存しました（端末内）' : 'お気に入りを解除しました');
+});
+paintFav();
+document.getElementById('share-btn').addEventListener('click', function () {
+  var url = location.href;
+  if (navigator.share) {
+    navigator.share({ title: document.title, url: url }).catch(function () {});
+  } else if (navigator.clipboard) {
+    navigator.clipboard.writeText(url);
+    toast('カードのURLをコピーしました');
+  } else {
+    toast('カードURL：' + url);
+  }
+});
+// 外部リンク：計測（端末内カウント）→デモのため遷移はしない
+function paintCounts() {
+  document.querySelectorAll('[data-cnt]').forEach(function (s) {
+    var n = getStore('clicks_' + p.id + '_' + s.dataset.cnt, 0);
+    s.textContent = n ? 'あなたの端末でのクリック ' + n + '回' : '';
+  });
+}
+document.querySelectorAll('[data-ext]').forEach(function (a) {
+  a.addEventListener('click', function () {
+    countClick(p.id, a.dataset.ext);
+    paintCounts();
+    toast('デモのため外部ページには移動しません（クリックを計測しました）');
+  });
+});
+document.querySelectorAll('[data-diary]').forEach(function (li) {
+  li.addEventListener('click', function () {
+    countClick(p.id, 'blog');
+    toast('デモのため外部ページには移動しません（クリックを計測しました）');
+  });
+});
+paintCounts();
+</script>
+</body>
+</html>

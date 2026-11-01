@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>フリーセラピスト掲示板（デモ）｜おすすめURL掲示板</title>
+<meta name="description" content="フリーセラピスト専用の宣伝リンク集（デモサイト）。掲載はカードが本体で、掲示板はカードをそのまま表示します。">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="demo-banner">デモサイトです。掲載者・店舗・数値はすべて架空で、外部リンクはすべてダミーです。</div>
+<div class="wrap">
+  <header class="site">
+    <div class="logo">フリーセラピスト掲示板<span>デモ</span></div>
+    <p class="tagline">フリーセラピストの宣伝カード集｜掲載は無料・URLだけ（テキスト投稿はありません）</p>
+  </header>
+
+  <nav class="menu">
+    <a href="index.html" class="on">掲示板</a>
+    <a href="dashboard.html">掲載者ダッシュボード（例）</a>
+  </nav>
+
+  <!-- 職種の選択：開始時点では「セラピスト」のみ掲載。他職種は準備中 -->
+  <div class="job-tabs" id="job-tabs">
+    <button data-job="therapist" class="on">セラピスト<small>掲載中</small></button>
+    <button data-job="golf" class="soon">ゴルフ同行<small>準備中</small></button>
+    <button data-job="other" class="soon">その他<small>準備中</small></button>
+  </div>
+  <div class="soon-note" id="soon-note" style="display:none">この職種は準備中です。現在は「セラピスト」のみ掲載しています。</div>
+
+  <!-- 鮮度の帯 -->
+  <div class="fresh-band" id="fresh-band"></div>
+
+  <div class="controls" id="controls">
+    <input type="search" class="search-box" id="q" placeholder="名前・エリア・タグで検索（例：銀座、アロマ）">
+    <div class="sort-tabs" id="sort-tabs">
+      <button data-sort="new" class="on">新着順</button>
+      <button data-sort="updated">更新順</button>
+      <button data-sort="random">ランダム順</button>
+    </div>
+    <p class="result-count" id="result-count"></p>
+  </div>
+
+  <main class="grid" id="list"></main>
+  <p class="empty" id="empty" style="display:none">条件に合うカードがありません。</p>
+
+  <footer class="site">
+    このサイトは情報プラットフォームです。連絡・予約・決済は各リンク先（本人のページ）で行われます。<br>
+    掲示板の一覧は、掲載者カードの内容をそのまま表示しています（別データは持っていません）。<br>
+    写真はAI生成画像を使用しています（各写真に「AI生成」表記）。掲載者・店舗はすべて架空のデモデータです。
+  </footer>
+</div>
+
+<script src="data.js"></script>
+<script src="app.js"></script>
+<script>
+var listEl = document.getElementById('list');
+var sortMode = 'new', query = '';
+
+// 掲示板はカードのデータ（PEOPLE）だけから描画する＝カードが本体
+function listedPeople() {
+  return PEOPLE.filter(function (p) { return p.job === 'セラピスト'; });
+}
+function renderFresh() {
+  var ps = listedPeople();
+  var today = ps.filter(function (p) { return p.updatedMin < 1440; });
+  var within24 = ps.filter(function (p) { return p.updatedMin <= 1440; });
+  var open = ps.filter(function (p) { return p.openToday; });
+  document.getElementById('fresh-band').innerHTML =
+    '<div class="fb-title">🔥 今日も動いています</div>' +
+    '<div class="fb-row">今日更新：<b>' + today.map(function(p){return p.name;}).join('・') + '</b>（' + today.length + '件）</div>' +
+    '<div class="fb-row">24時間以内の更新：<b>' + within24.length + '件</b> ／ 本日営業中：<b>' + open.length + '名</b></div>';
+}
+function render() {
+  var items = listedPeople().filter(function (p) {
+    var hay = (p.name + ' ' + p.area + ' ' + p.tags.join(' ') + ' ' + p.shop).toLowerCase();
+    return hay.indexOf(query.toLowerCase()) >= 0;
+  });
+  if (sortMode === 'new') items.sort(function (a, b) { return a.joinedDays - b.joinedDays; });
+  if (sortMode === 'updated') items.sort(function (a, b) { return a.updatedMin - b.updatedMin; });
+  if (sortMode === 'random') items.sort(function () { return Math.random() - 0.5; });
+  document.getElementById('empty').style.display = items.length ? 'none' : 'block';
+  document.getElementById('result-count').textContent = 'カード ' + items.length + '件（セラピスト）';
+  listEl.innerHTML = items.map(function (p) {
+    return '<a class="p-card" href="card.html?id=' + p.id + '">' +
+      '<span class="ph"><img src="' + p.photos[0] + '" alt="' + p.name + 'の写真（AI生成）">' +
+      (p.openToday ? '<span class="open-badge">本日営業中</span>' : '') +
+      (p.joinedDays <= 7 ? '<span class="new-badge">NEW</span>' : '') +
+      '<span class="ai-label">AI生成</span></span>' +
+      '<span class="body">' +
+      '<span class="name">' + p.name + ' <span class="age">' + p.age + '歳</span></span><br>' +
+      '<span class="area">📍' + p.area + '</span> <span class="job">職種：' + p.job + '</span>' +
+      '<span class="tags">' + p.tags.map(function (t) { return '<span>' + t + '</span>'; }).join('') + '</span>' +
+      '<span class="stars">' + starText(p.stars) +
+      '<span class="stars-note">本人のおすすめ度（掲載者自己申告）</span></span>' +
+      '<span class="meta"><span>♥ ' + p.likes + '</span><span>更新：' + relTime(p.updatedMin) + '</span></span>' +
+      '</span></a>';
+  }).join('');
+}
+document.querySelectorAll('#sort-tabs button').forEach(function (b) {
+  b.addEventListener('click', function () {
+    document.querySelectorAll('#sort-tabs button').forEach(function (x) { x.classList.remove('on'); });
+    b.classList.add('on'); sortMode = b.dataset.sort; render();
+  });
+});
+document.getElementById('q').addEventListener('input', function (e) {
+  query = e.target.value.trim(); render();
+});
+document.querySelectorAll('#job-tabs button').forEach(function (b) {
+  b.addEventListener('click', function () {
+    if (b.classList.contains('soon')) {
+      document.getElementById('soon-note').style.display = 'block';
+      toast('その職種は準備中です（現在はセラピストのみ掲載）');
+    } else {
+      document.getElementById('soon-note').style.display = 'none';
+    }
+  });
+});
+renderFresh();
+render();
+</script>
+</body>
+</html>

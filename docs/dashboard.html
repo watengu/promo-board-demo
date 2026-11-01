@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>掲載者ダッシュボード（例）｜フリーセラピスト掲示板（デモ）</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="demo-banner">デモサイトです。このダッシュボードの数値はすべて架空の表示例です。</div>
+<div class="wrap">
+  <header class="site">
+    <div class="logo">掲載者ダッシュボード<span>例</span></div>
+    <p class="tagline" id="db-sub"></p>
+  </header>
+
+  <nav class="menu">
+    <a href="index.html">掲示板</a>
+    <a href="dashboard.html" class="on">掲載者ダッシュボード（例）</a>
+  </nav>
+
+  <main id="db"></main>
+  <a class="back" href="index.html">← 掲示板にもどる</a>
+
+  <footer class="site">
+    数字フィードバックの表示例です（すべて架空の数値）。<br>
+    本番では本人のカード分だけが表示されます。計測は集計のみで、個人を特定する情報は持ちません。
+  </footer>
+</div>
+<script src="data.js"></script>
+<script src="app.js"></script>
+<script>
+if (sessionStorage.getItem('age_ok') !== '1') { location.href = 'index.html'; }
+var p = PEOPLE.find(function (x) { return x.id === ANALYTICS.personId; });
+document.getElementById('db-sub').textContent =
+  p.name + '（' + p.area + '）さんのカードの数字 ／ ' + ANALYTICS.range;
+document.getElementById('db').innerHTML =
+  '<div class="stat-grid">' +
+  '<div class="stat"><div class="s-label">👁 カード閲覧数</div><div class="s-num">' + ANALYTICS.views.toLocaleString() + '</div><div class="s-delta">先週比 ' + ANALYTICS.viewsDelta + '</div></div>' +
+  '<div class="stat"><div class="s-label">🚀 外部ページへの移動（クリック）</div><div class="s-num">' + ANALYTICS.clicksTotal + '</div><div class="s-delta">先週比 ' + ANALYTICS.clicksDelta + '</div></div>' +
+  '<div class="stat"><div class="s-label">💖 いいね</div><div class="s-num">' + ANALYTICS.likes + '</div><div class="s-delta">　</div></div>' +
+  '<div class="stat"><div class="s-label">★ お気に入り登録</div><div class="s-num">' + ANALYTICS.favorites + '</div><div class="s-delta">　</div></div>' +
+  '</div>' +
+  '<section class="block"><h2>リンク別の移動内訳</h2><table class="breakdown">' +
+  ANALYTICS.clicksByLink.map(function (r) {
+    return '<tr><td>' + r.label + '</td><td>' + r.count + ' 回</td></tr>';
+  }).join('') +
+  '</table>' +
+  '<p style="font-size:12px;color:var(--sub);margin-top:10px">「外部ページへの移動」＝あなたの宣伝ページへ実際に移動した人数の目安です。更新ボタンや「本日営業中」を使うと、掲示板の鮮度の帯に載りやすくなります。</p></section>' +
+  '<section class="block"><h2>あなたのカード</h2>' +
+  '<p style="font-size:14px"><a href="card.html?id=' + p.id + '" style="color:var(--accent)">' + p.name + ' のプロフィールカードを見る →</a></p>' +
+  '<p style="font-size:12px;color:var(--sub);margin-top:6px">このカードURLを自分のSNSやプロフィールに貼ることが、そのまま宣伝になります。</p></section>';
+</script>
+</body>
+</html>
