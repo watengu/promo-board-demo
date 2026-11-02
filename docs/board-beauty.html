@@ -25,12 +25,12 @@
   </nav>
 
   <div class="board-head">
-    <h1>💅 美容系板</h1>
+    <h1>美容系板</h1>
     <p>ネイリスト等の健全ジャンルの板です。この板は年齢確認なしで見られます。</p>
   </div>
 
   <div class="fresh-band" id="fresh-band">
-    <div class="fb-title">🔥 この板も動いています</div>
+    <div class="fb-title">この板も動いています</div>
     <div class="fb-row">今日更新：<b>1件</b>（なな）</div>
     <div class="fb-row">24時間以内の更新：<b>1件</b> ／ 本日営業中：<b>0名</b></div>
     <div class="fb-note">今日更新＝本人が「更新しました」を押したカード／24時間以内＝更新から24時間以内／本日営業中＝掲載者の自己申告です（営業実態をシステムが確認したものではありません）</div>
@@ -51,7 +51,7 @@
       <span class="ph"><img src="https://watengu.github.io/profile-card-demo/images/p7-a.jpg" alt="ななの写真（AI生成）" data-name="なな" data-color="#b0526b" onerror="imgFallback(this)"><span class="ai-label">AI生成</span></span>
       <span class="body">
       <span class="name">なな <span class="age">25歳</span></span><br>
-      <span class="area">📍表参道</span> <span class="job">職種：ネイリスト</span>
+      <span class="area">表参道</span> <span class="job">職種：ネイリスト</span>
       <span class="tags"><span>ジェルネイル</span><span>ニュアンス</span><span>手描きアート</span></span>
       <span class="open-pill" data-open-badge style="display:none">本日営業中（掲載者申告）</span>
       <span class="stars">⭐⭐⭐⭐☆<span class="stars-note">本人のおすすめ度（掲載者自己申告）</span></span>
@@ -64,8 +64,8 @@
   <h2 class="sec-title">利用者が貼ったURL（カード以外）</h2>
   <p class="sec-note">運営枠ではありません。利用者が自由に貼った一般の掲載です。表示は先方のロゴとURLだけです。デモではリンク先はすべてダミー（#）です。</p>
   <div class="url-rows" id="url-rows">
-    <a class="url-row" href="#"><span class="logo-chip" style="background:#b0526b">ネ</span><span><span class="u-name">ネイルサロン検索（架空）</span><br><span class="u-url">example.jp/nail-search（ダミーURL）</span></span><span class="u-arrow">→</span></a>
-    <a class="url-row" href="#"><span class="logo-chip" style="background:#7a9e7e">美</span><span><span class="u-name">美容情報まとめ（架空）</span><br><span class="u-url">example.jp/beauty-info（ダミーURL）</span></span><span class="u-arrow">→</span></a>
+    <a class="url-row" href="#"><span class="logo-chip">ネ</span><span><span class="u-name">ネイルサロン検索（架空）</span><br><span class="u-url">example.jp/nail-search（ダミーURL）</span></span><span class="u-arrow">→</span></a>
+    <a class="url-row" href="#"><span class="logo-chip">美</span><span><span class="u-name">美容情報まとめ（架空）</span><br><span class="u-url">example.jp/beauty-info（ダミーURL）</span></span><span class="u-arrow">→</span></a>
   </div>
 
   <aside class="pr-slot">
@@ -109,7 +109,7 @@ function renderFresh() {
   var names = today.slice(0, 3).map(function (x) { return x.p.name; }).join('・');
   if (today.length > 3) names += ' ほか';
   document.getElementById('fresh-band').innerHTML =
-    '<div class="fb-title">🔥 この板も動いています</div>' +
+    '<div class="fb-title">この板も動いています</div>' +
     '<div class="fb-row">今日更新：<b>' + today.length + '件</b>' +
     (today.length ? '（' + names + '）' : '') + '</div>' +
     '<div class="fb-row">24時間以内の更新：<b>' + within24.length + '件</b> ／ 本日営業中：<b>' + open.length + '名</b></div>' +

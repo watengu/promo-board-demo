@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>おすすめURL掲示板（デモ）｜板の一覧・載るのはURLだけ</title>
+<title>おすすめURL掲示板（デモ）｜載るのは、URLだけ。</title>
 <meta name="description" content="おすすめURL掲示板（デモサイト）。この掲示板は情報を持ちません。掲載は無料・URLだけ。ジャンル板に分かれていて、カードのURLはカードの見た目で表示され、それ以外のURLは利用者が貼る一般の掲載としてロゴとURLだけを表示します。">
 <link rel="stylesheet" href="style.css">
 </head>
@@ -12,7 +12,7 @@
 <div class="wrap">
   <header class="site">
     <div class="logo">おすすめURL掲示板<span>デモ</span></div>
-    <p class="tagline">掲示板サイト（この掲示板は情報を持ちません）</p>
+    <a class="header-link" href="https://watengu.github.io/profile-card-demo/">カードを作る</a>
   </header>
 
   <nav class="menu">
@@ -21,79 +21,83 @@
     <a href="board-beauty.html">美容系板</a>
     <a href="board-media.html">メディア板</a>
     <a href="board-other.html">その他URL板</a>
-    <a href="https://watengu.github.io/profile-card-demo/">プロフィールカード（カードサイト）</a>
   </nav>
 
+  <!-- 主役は一文だけ。根拠は1行。直下に中身の証拠（今日更新の実カード写真）を置く -->
   <div class="lp-hero">
     <h1>載るのは、<span class="hl">URLだけ</span>。</h1>
-    <p class="lead">この掲示板は情報を持ちません。<br>プロフィールカードのURLと、みんなが貼った外部サイトのURLを、ジャンル板ごとに置くためだけの場所です。</p>
+    <p class="lead">この掲示板は情報を持ちません。カードとURLが、ジャンル板に並んでいるだけです。</p>
   </div>
 
-  <!-- 全体横断の新着（小さく） -->
-  <div class="cross-fresh">
-    <span class="cf-title">🔥 全体の新着</span>
-    今日更新のカード：<b>5件</b>（りお・ゆき・みゆ ほか）／ 本日営業中：<b>4名</b>
-    <div style="margin-top:4px">新着は各板の中で流れます。まずは板を選んでください。</div>
-  </div>
-
-  <h2 class="sec-title">板の一覧</h2>
-  <p class="sec-note">板は最初は大分類で少なく。掲載が貯まったら板を割ります。年齢確認は、大人寄りのリラクゼーション板の入口だけに置いています（他の板は確認なしで見られます）。</p>
-  <div class="board-list">
-    <a class="board-item" href="board-relaxation.html">
-      <span class="b-ico">💆</span>
-      <span class="b-main">
-        <span class="b-name">リラクゼーション板</span>
-        <span class="b-desc" style="display:block">フリーセラピストのカードが中心の板。立ち上げの中心はここです。</span>
-        <span class="b-meta"><span class="pill">カード 6件</span><span class="pill">URL掲載 3件</span><span class="pill gate">入る前に年齢確認あり</span></span>
-      </span>
-      <span class="b-arrow">→</span>
+  <div class="hero-strip">
+    <a class="hero-photo" href="board-relaxation.html">
+      <img src="https://watengu.github.io/profile-card-demo/images/p1-a.jpg" alt="りおの写真（AI生成）" onerror="imgFallback(this)" data-name="りお" data-color="#57504a">
+      <span class="hp-meta">りお<small>銀座 ・ 40分前に更新</small></span>
     </a>
-    <a class="board-item" href="board-beauty.html">
-      <span class="b-ico">💅</span>
-      <span class="b-main">
-        <span class="b-name">美容系板</span>
-        <span class="b-desc" style="display:block">ネイリスト等の健全ジャンルの板。</span>
-        <span class="b-meta"><span class="pill">カード 1件</span><span class="pill">URL掲載 2件</span><span class="pill free">年齢確認なし</span></span>
-      </span>
-      <span class="b-arrow">→</span>
+    <a class="hero-photo" href="board-relaxation.html">
+      <img src="https://watengu.github.io/profile-card-demo/images/p6-a.jpg" alt="ゆきの写真（AI生成）" onerror="imgFallback(this)" data-name="ゆき" data-color="#57504a">
+      <span class="hp-meta">ゆき<small>恵比寿 ・ 1時間前に更新</small></span>
     </a>
-    <a class="board-item" href="board-media.html">
-      <span class="b-ico">🎤</span>
-      <span class="b-main">
-        <span class="b-name">メディア・インフルエンサー板</span>
-        <span class="b-desc" style="display:block">フリーアナウンサー・インフルエンサー等のメディア系の板。</span>
-        <span class="b-meta"><span class="pill">カード 0件</span><span class="pill">URL掲載 2件</span><span class="pill free">年齢確認なし</span></span>
-      </span>
-      <span class="b-arrow">→</span>
+    <a class="hero-photo" href="board-relaxation.html">
+      <img src="https://watengu.github.io/profile-card-demo/images/p2-a.jpg" alt="みゆの写真（AI生成）" onerror="imgFallback(this)" data-name="みゆ" data-color="#57504a">
+      <span class="hp-meta">みゆ<small>新宿 ・ 2時間前に更新</small></span>
     </a>
-    <a class="board-item" href="board-other.html">
-      <span class="b-ico">🔗</span>
-      <span class="b-main">
-        <span class="b-name">その他URL板</span>
-        <span class="b-desc" style="display:block">どの板にも当てはまらないURLの置き場。Yahoo! など外部サイトのURLも、利用者が一般の掲載として貼れます。</span>
-        <span class="b-meta"><span class="pill">カード 0件</span><span class="pill">URL掲載 4件</span><span class="pill free">年齢確認なし</span></span>
-      </span>
-      <span class="b-arrow">→</span>
+    <a class="hero-photo" href="board-beauty.html">
+      <img src="https://watengu.github.io/profile-card-demo/images/p7-a.jpg" alt="ななの写真（AI生成）" onerror="imgFallback(this)" data-name="なな" data-color="#57504a">
+      <span class="hp-meta">なな<small>表参道 ・ 3時間前に更新</small></span>
     </a>
   </div>
+  <p class="hero-note">今日更新のカード <b>5件</b> ／ 本日営業中 <b>4名</b>（営業中は掲載者の自己申告）。写真はAI生成、タップで各板へ。</p>
 
-  <div class="feat-grid">
-    <div class="feat"><div class="f-ico">🆓</div><div class="f-title">掲載は無料・URLだけ</div><div class="f-body">文章の投稿はありません。載せられるのはURLだけ。掲示板側に利用者の文章は残りません。</div></div>
-    <div class="feat"><div class="f-ico">🪪</div><div class="f-title">カードURLは、カードの顔で</div><div class="f-body">プロフィールカードのURLは、各板の中でカードの見た目（写真・名前・数字）のまま表示されます。リンク先は本人の公開プロフィールページ（カードサイト）です。</div></div>
-    <div class="feat"><div class="f-ico">🔗</div><div class="f-title">それ以外のURLは、ロゴとURLだけ</div><div class="f-body">カード以外のURLは、利用者が貼る一般の掲載です（運営枠ではありません）。Yahoo! やシティヘブン等の外部URLも貼れます。表示は先方のロゴとURLだけです。</div></div>
-    <div class="feat"><div class="f-ico">🤝</div><div class="f-title">仲介はしません</div><div class="f-body">連絡・予約・決済は、すべてリンク先のページで行われます。この掲示板は「表示するだけ」です。</div></div>
+  <h2 class="sec-title">板を選ぶ</h2>
+  <p class="sec-note">板は大分類で少なく。掲載が貯まったら割ります。年齢確認はリラクゼーション板の入口だけです。</p>
+  <div class="board-tiles">
+    <a class="board-tile" href="board-relaxation.html">
+      <img src="https://watengu.github.io/profile-card-demo/images/p1-a.jpg" alt="" onerror="this.style.display='none'">
+      <span class="bt-shade"></span>
+      <span class="bt-body">
+        <span class="bt-name">リラクゼーション</span>
+        <span class="bt-meta" style="display:block">カード 6件 ・ URL掲載 3件</span>
+        <span class="pill gate" style="margin-top:6px">入る前に年齢確認あり</span>
+      </span>
+    </a>
+    <a class="board-tile" href="board-beauty.html">
+      <img src="https://watengu.github.io/profile-card-demo/images/p7-a.jpg" alt="" onerror="this.style.display='none'">
+      <span class="bt-shade"></span>
+      <span class="bt-body">
+        <span class="bt-name">美容系</span>
+        <span class="bt-meta" style="display:block">カード 1件 ・ URL掲載 2件</span>
+        <span class="pill" style="margin-top:6px">年齢確認なし</span>
+      </span>
+    </a>
+    <a class="board-tile tile-text" href="board-media.html">
+      <span class="bt-mark">メディア</span>
+      <span class="bt-body">
+        <span class="bt-name">メディア・インフルエンサー</span>
+        <span class="bt-meta" style="display:block">カード 0件 ・ URL掲載 2件</span>
+        <span class="pill" style="margin-top:6px">年齢確認なし</span>
+      </span>
+    </a>
+    <a class="board-tile tile-text" href="board-other.html">
+      <span class="bt-mark">URL</span>
+      <span class="bt-body">
+        <span class="bt-name">その他URL</span>
+        <span class="bt-meta" style="display:block">URL掲載 4件 ・ どの板にも当てはまらないURLの置き場</span>
+        <span class="pill" style="margin-top:6px">年齢確認なし</span>
+      </span>
+    </a>
   </div>
 
-  <div class="lp-sec">
-    <h2>載せられるカードのジャンル</h2>
-    <p>カード自体は、女性の個人活動者の幅広い職種で作れます。ただし、この掲示板の各板に表示されるのは、決めた範囲（健全ジャンル〜メディア系〜フリーセラピストが上限）のカードだけです。範囲外の職種のカードは、カードサイトに存在しても掲示板には出ません。</p>
-  </div>
-
-  <div class="lp-sec">
-    <h2>カードって何？</h2>
-    <p>カードは、掲示板とは独立した別のサイト「プロフィールカード」で作ります。<br>職種を選んでURLを貼るだけで、自分の公開プロフィールページができます。</p>
+  <div class="lp-how">
+    <h2 class="sec-title" style="margin-top:0">仕組み</h2>
+    <p><b>掲載は無料・URLだけ。</b>文章の投稿はありません。掲示板側に利用者の文章は残りません。</p>
+    <p><b>カードURLは、カードの顔で。</b>各板の中でカードの見た目（写真・名前・数字）のまま表示され、リンク先は本人の公開プロフィールページ（カードサイト）です。数字もカード側の持ち物で、掲示板は表示するだけです。</p>
+    <p><b>それ以外のURLは、ロゴとURLだけ。</b>利用者が貼る一般の掲載です（運営枠ではありません）。</p>
+    <p><b>仲介はしません。</b>連絡・予約・決済はすべてリンク先で行われます。</p>
+    <p>カード自体は、女性の個人活動者の幅広い職種で作れます。この掲示板に表示されるのは、決めた範囲（健全ジャンル〜メディア系〜フリーセラピストが上限）のカードだけです。</p>
     <div class="cta-row">
-      <a href="https://watengu.github.io/profile-card-demo/">プロフィールカード（カードサイト）へ →</a>
+      <a class="primary" href="https://watengu.github.io/profile-card-demo/">プロフィールカードを作る →</a>
+      <a href="board-relaxation.html">いちばん動いている板を見る</a>
     </div>
   </div>
 
