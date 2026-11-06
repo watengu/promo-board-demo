@@ -47,7 +47,7 @@
   </div>
 
   <main class="grid" id="list">
-    <a class="p-card" href="https://watengu.github.io/profile-card-demo/card/7.html" data-id="7" data-job="ネイリスト" data-joined="10" data-updated="180" data-open="0" data-hay="なな 表参道 ジェルネイル ニュアンス 手描きアート フリーネイリスト">
+    <div class="cell"><a class="p-card" href="https://watengu.github.io/profile-card-demo/card/7.html" data-id="7" data-job="ネイリスト" data-joined="10" data-updated="180" data-open="0" data-hay="なな 表参道 ジェルネイル ニュアンス 手描きアート フリーネイリスト">
       <span class="ph"><img src="https://watengu.github.io/profile-card-demo/images/p7-a.jpg" alt="ななの写真（AI生成）" data-name="なな" data-color="#b0526b" onerror="imgFallback(this)"><span class="ai-label">AI生成</span></span>
       <span class="body">
       <span class="name">なな <span class="age">25歳</span></span><br>
@@ -57,7 +57,7 @@
       <span class="stars">⭐⭐⭐⭐☆<span class="stars-note">本人のおすすめ度（掲載者自己申告）</span></span>
       <span class="meta"><span>♥ 63</span><span class="upd-time">更新：3時間前</span></span>
       <span class="detail-link">プロフィールカードを見る（カードサイトへ）→</span>
-      </span></a>
+      </span></a></div>
   </main>
   <p class="empty" id="empty" style="display:none">条件に合うカードがありません。</p>
 
@@ -102,7 +102,7 @@ function enforceRange() {
   cardEls = cardEls.filter(function (el) {
     var rec = byId(+el.dataset.id);
     var ok = !!rec && BOARD_RANGE_JOBS.indexOf(rec.job) >= 0 && el.dataset.job === rec.job;
-    if (!ok) el.remove();
+    if (!ok) { var cell0 = el.parentNode; if (cell0 && cell0.classList.contains('cell')) cell0.remove(); else el.remove(); }
     return ok;
   });
 }
@@ -138,8 +138,8 @@ function render() {
   if (sortMode === 'new') items.sort(function (a, b) { return (+a.dataset.joined) - (+b.dataset.joined); });
   if (sortMode === 'updated') items.sort(function (a, b) { return effUpd(a) - effUpd(b); });
   if (sortMode === 'random') items.sort(function () { return Math.random() - 0.5; });
-  cardEls.forEach(function (el) { el.style.display = 'none'; });
-  items.forEach(function (el) { el.style.display = ''; listEl.appendChild(el); });
+  cardEls.forEach(function (el) { var c = el.parentNode; if (c && c.classList.contains('cell')) c.style.display = 'none'; else el.style.display = 'none'; });
+  items.forEach(function (el) { var c = el.parentNode; if (c && c.classList.contains('cell')) { c.style.display = ''; listEl.appendChild(c); } else { el.style.display = ''; listEl.appendChild(el); } });
   document.getElementById('empty').style.display = items.length ? 'none' : 'block';
   document.getElementById('result-count').textContent = 'カード ' + items.length + '件（美容系板）';
 }

@@ -204,7 +204,9 @@ function placeStampBars() {
     var note = document.createElement("p");
     note.className = "stamp-note";
     note.textContent = "この掲示板の反応はスタンプだけです。コメントや文章での反応はできません（テキストを持たない設計と荒れ対策のため）。反応の数はデモの架空表示です。";
-    first.parentNode.insertBefore(note, first);
+    var host = first.parentNode;
+    if (host && (host.id === "list" || host.id === "url-rows") && host.parentNode) host.parentNode.insertBefore(note, host);
+    else if (host) host.insertBefore(note, first);
   }
 }
 document.addEventListener("DOMContentLoaded", placeStampBars);

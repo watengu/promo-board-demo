@@ -394,3 +394,5 @@ footer.site a { color: var(--ink-soft); font-weight: 600; }
 .stamp-btn .stamp-count { font-weight: 700; color: #8a8172; }
 .stamp-btn.on { border-color: #bc5633; background: #fbeee7; color: #8c3c1f; }
 .stamp-btn.on .stamp-count { color: #bc5633; }
+.cell { min-width: 0; }
+.cell .stamp-bar { margin: 8px 2px 0; }
