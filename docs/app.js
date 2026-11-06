@@ -157,6 +157,7 @@ function buildStampBar(target) {
       var i = st.mine.indexOf(sp.id);
       if (i >= 0) st.mine.splice(i, 1); else st.mine.push(sp.id);
       setStore("bstamps_" + target, st);
+      recordMove(target);
       paintStampBar(bar, target);
       toast("スタンプで反応しました");
     });
@@ -173,6 +174,22 @@ function paintStampBar(bar, target) {
     btn.querySelector(".stamp-count").textContent = stampCount(target, id);
   });
 }
+// ---------- 勢い（並びの前提、2026-11-06 メイン決定） ----------
+// 並びは「最後に動きがあった順」。動き＝本人の更新（カード側の数字）＋この板での反応（スタンプ）とクリック。
+// 仕組みは増やさず、既にある数字だけで組む。複雑なスコア計算はしない。
+function recordMove(target) { setStore("bmove_" + target, Date.now()); }
+function lastMoveMin(target) {
+  var t = getStore("bmove_" + target, null);
+  if (!t) return null;
+  return Math.max(0, Math.round((Date.now() - t) / 60000));
+}
+function stampTotal(target) {
+  return STAMPS.reduce(function (sum, sp) { return sum + stampCount(target, sp.id); }, 0);
+}
+document.addEventListener("click", function (ev) {
+  var a = ev.target && ev.target.closest ? ev.target.closest(".p-card") : null;
+  if (a && a.getAttribute("data-id")) recordMove("card-" + a.getAttribute("data-id"));
+});
 function stampTargetOf(el, idx) {
   if (el.classList.contains("p-card")) return "card-" + el.getAttribute("data-id");
   var page = (location.pathname.split("/").pop() || "index").replace(".html", "");

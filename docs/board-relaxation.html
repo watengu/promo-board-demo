@@ -52,10 +52,11 @@
   <div class="controls" id="controls">
     <input type="search" class="search-box" id="q" placeholder="名前・エリア・タグで検索（例：銀座、アロマ）">
     <div class="sort-tabs" id="sort-tabs">
-      <button data-sort="new" class="on">新着順</button>
+      <button data-sort="flow" class="on">勢い順</button>
+      <button data-sort="new">新着順</button>
       <button data-sort="updated">更新順</button>
-      <button data-sort="random">ランダム順</button>
     </div>
+    <p class="sort-note">基本の並びは勢い順です：更新・反応・クリックの動きが新しいカードが上に来ます（文章・スレッドはありません）。</p>
     <p class="result-count" id="result-count">カード 6件（リラクゼーション板）</p>
   </div>
 
@@ -148,7 +149,7 @@
 <script src="app.js"></script>
 <script>
 var listEl = document.getElementById('list');
-var sortMode = 'new', query = '';
+var sortMode = 'flow', query = '';
 var cardEls = Array.prototype.slice.call(listEl.querySelectorAll('.p-card'));
 function effUpd(el) {
   var st = getCardState(+el.dataset.id);
@@ -187,9 +188,21 @@ function paintState() {
     if (upd) upd.textContent = '更新：' + relTime(effUpd(el));
   });
 }
+function effMove(el) {
+  var upd = effUpd(el);
+  var mv = (typeof lastMoveMin === 'function') ? lastMoveMin('card-' + el.dataset.id) : null;
+  return mv === null ? upd : Math.min(upd, mv);
+}
 function render() {
   var q = query.toLowerCase();
   var items = cardEls.filter(function (el) { return el.dataset.hay.indexOf(q) >= 0; });
+  if (sortMode === 'flow') items.sort(function (a, b) {
+    var d = effMove(a) - effMove(b);
+    if (d) return d;
+    var st = stampTotal('card-' + b.dataset.id) - stampTotal('card-' + a.dataset.id);
+    if (st) return st;
+    return (+a.dataset.joined) - (+b.dataset.joined);
+  });
   if (sortMode === 'new') items.sort(function (a, b) { return (+a.dataset.joined) - (+b.dataset.joined); });
   if (sortMode === 'updated') items.sort(function (a, b) { return effUpd(a) - effUpd(b); });
   if (sortMode === 'random') items.sort(function () { return Math.random() - 0.5; });
