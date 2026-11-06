@@ -97,7 +97,16 @@ function effOpen(el) {
   if (st && typeof st.open === 'boolean') return st.open;
   return el.dataset.open === '1';
 }
-function byId(id) { return PEOPLE.find(function (p) { return p.id === id; }); }
+function byId(id) { return CARD_INDEX.find(function (p) { return p.id === id; }); }
+function enforceRange() {
+  cardEls = cardEls.filter(function (el) {
+    var rec = byId(+el.dataset.id);
+    var ok = !!rec && BOARD_RANGE_JOBS.indexOf(rec.job) >= 0 && el.dataset.job === rec.job;
+    if (!ok) el.remove();
+    return ok;
+  });
+}
+enforceRange();
 function renderFresh() {
   var items = cardEls.map(function (el) {
     return { p: byId(+el.dataset.id), upd: effUpd(el), open: effOpen(el) };
