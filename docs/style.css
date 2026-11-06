@@ -238,10 +238,6 @@ nav.menu a.on { background: var(--ink); color: #fff; box-shadow: none; }
   display: flex; justify-content: space-between; font-size: 11.5px; color: var(--sub);
   margin-top: 7px; border-top: 1px solid var(--paper); padding-top: 7px;
 }
-.open-pill {
-  display: inline-block; margin-top: 6px; background: var(--ink); color: #fff;
-  font-size: 10.5px; font-weight: 700; padding: 3px 9px; border-radius: 999px;
-}
 .detail-link { display: block; margin-top: 8px; font-size: 12px; font-weight: 700; color: var(--accent); }
 .empty { text-align: center; color: var(--sub); padding: 30px 0; font-size: 13.5px; }
 
