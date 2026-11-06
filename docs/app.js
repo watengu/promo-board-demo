@@ -274,10 +274,38 @@ function placeReportUI() {
   });
 }
 var reportPanel = null;
+var LOGIN_KEY = "demo_login_v1";
+function isLoggedIn() {
+  try { return !!localStorage.getItem(LOGIN_KEY); } catch (e) { return false; }
+}
 function openReportPanel(el, key, line) {
   closeReportPanel();
   reportPanel = document.createElement("div");
   reportPanel.className = "report-panel";
+  if (!isLoggedIn()) {
+    var gateTitle = document.createElement("p");
+    gateTitle.className = "rp-title";
+    gateTitle.textContent = "通報はログインした利用者だけが送れます（通報元の確認が取れないと、繰り返し通報の割り引きができないため）。ログインはカード側のアカウントで行います。利用者でない方（なりすまし被害など）は、通報・削除の窓口ページのメール窓口からご連絡ください。";
+    reportPanel.appendChild(gateTitle);
+    var loginBtn = document.createElement("button");
+    loginBtn.type = "button";
+    loginBtn.className = "rp-confirm";
+    loginBtn.textContent = "ログインする（デモ用：この端末だけで有効な仮ログイン）";
+    loginBtn.addEventListener("click", function () {
+      try { localStorage.setItem(LOGIN_KEY, "1"); } catch (e) {}
+      toast("ログインしました（デモ）");
+      openReportPanel(el, key, line);
+    });
+    reportPanel.appendChild(loginBtn);
+    var gateCancel = document.createElement("button");
+    gateCancel.type = "button";
+    gateCancel.className = "rp-cancel";
+    gateCancel.textContent = "やめる";
+    gateCancel.addEventListener("click", closeReportPanel);
+    reportPanel.appendChild(gateCancel);
+    line.parentNode.insertBefore(reportPanel, line.nextSibling);
+    return;
+  }
   var title = document.createElement("p");
   title.className = "rp-title";
   title.textContent = "通報の理由を選んでください（文章の入力はありません）。通報すると、この掲載は確認のため即・仮非表示になります。";
