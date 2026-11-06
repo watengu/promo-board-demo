@@ -210,3 +210,136 @@ function placeStampBars() {
   }
 }
 document.addEventListener("DOMContentLoaded", placeStampBars);
+
+/* ===== 通報→即・仮非表示（2026-11-06 通報対応の決定） =====
+   通報は選択式（テキスト入力なし）。1件で即・仮非表示（最終削除ではない）。
+   運営確認で「戻す／削除」を決める。デモでは状態を端末内（localStorage）に持つため、
+   仮非表示はこの端末の中だけ。本番はサーバー側で全閲覧者に効かせる（仕様ファイル参照）。 */
+var REPORT_REASONS = ["範囲外の内容（性的サービスなど）", "権利侵害・なりすまし", "リンク切れ・情報の誤り", "その他"];
+var REPORT_KEY = "demo_reports_v1";
+function loadReports() {
+  try { return JSON.parse(localStorage.getItem(REPORT_KEY) || "{}"); } catch (e) { return {}; }
+}
+function saveReports(map) {
+  try { localStorage.setItem(REPORT_KEY, JSON.stringify(map)); } catch (e) {}
+}
+function reportKeyOf(el) {
+  var card = el.closest ? el.closest(".p-card") : null;
+  if (card && card.dataset && card.dataset.id) return "card-" + card.dataset.id;
+  if (el.classList.contains("p-card") && el.dataset.id) return "card-" + el.dataset.id;
+  var nameEl = el.querySelector ? el.querySelector(".u-name") : null;
+  return "url-" + (nameEl ? nameEl.textContent.trim() : "row");
+}
+function applyProvHide(el) {
+  var key = reportKeyOf(el);
+  var parent = el.parentNode;
+  if (!parent) return;
+  var sib = el.nextSibling;
+  if (sib && sib.classList && sib.classList.contains("stamp-bar")) sib.style.display = "none";
+  el.style.display = "none";
+  var line = parent.querySelector ? parent.querySelector('.report-line[data-for="' + key + '"]') : null;
+  if (line) line.style.display = "none";
+  if (!parent.querySelector || !parent.querySelector('.prov-note[data-for="' + key + '"]')) {
+    var note = document.createElement("div");
+    note.className = "prov-note";
+    note.setAttribute("data-for", key);
+    note.textContent = "この掲載は通報を受けて確認中です（仮非表示）。運営の確認で戻る場合があります。";
+    parent.insertBefore(note, el.nextSibling);
+  }
+}
+function placeReportUI() {
+  var reports = loadReports();
+  var targets = document.querySelectorAll(".p-card, .url-row");
+  Array.prototype.forEach.call(targets, function (el) {
+    var key = reportKeyOf(el);
+    if (reports[key]) { applyProvHide(el); return; }
+    var parent = el.parentNode;
+    if (!parent || (parent.querySelector && parent.querySelector('.report-line[data-for="' + key + '"]'))) return;
+    var line = document.createElement("div");
+    line.className = "report-line";
+    line.setAttribute("data-for", key);
+    var btn = document.createElement("button");
+    btn.type = "button";
+    btn.className = "report-btn";
+    btn.textContent = "通報する";
+    btn.addEventListener("click", function () { openReportPanel(el, key, line); });
+    line.appendChild(btn);
+    var anchor = el.nextSibling;
+    /* スタンプ欄がある場合はその後ろ、無ければ掲載の直後に出す */
+    var stampBar = null;
+    var sib = el.nextSibling;
+    while (sib) { if (sib.classList && sib.classList.contains("stamp-bar")) { stampBar = sib; break; } sib = sib.nextSibling; }
+    if (stampBar) parent.insertBefore(line, stampBar.nextSibling);
+    else parent.insertBefore(line, anchor);
+  });
+}
+var reportPanel = null;
+function openReportPanel(el, key, line) {
+  closeReportPanel();
+  reportPanel = document.createElement("div");
+  reportPanel.className = "report-panel";
+  var title = document.createElement("p");
+  title.className = "rp-title";
+  title.textContent = "通報の理由を選んでください（文章の入力はありません）。通報すると、この掲載は確認のため即・仮非表示になります。";
+  reportPanel.appendChild(title);
+  var chosen = -1;
+  var confirmBtn = document.createElement("button");
+  confirmBtn.type = "button";
+  confirmBtn.className = "rp-confirm";
+  confirmBtn.textContent = "通報して仮非表示にする";
+  confirmBtn.disabled = true;
+  REPORT_REASONS.forEach(function (r, i) {
+    var b = document.createElement("button");
+    b.type = "button";
+    b.className = "rp-reason";
+    b.textContent = r;
+    b.addEventListener("click", function () {
+      chosen = i;
+      Array.prototype.forEach.call(reportPanel.querySelectorAll(".rp-reason"), function (x) { x.classList.remove("on"); });
+      b.classList.add("on");
+      confirmBtn.disabled = false;
+    });
+    reportPanel.appendChild(b);
+  });
+  var cancelBtn = document.createElement("button");
+  cancelBtn.type = "button";
+  cancelBtn.className = "rp-cancel";
+  cancelBtn.textContent = "やめる";
+  cancelBtn.addEventListener("click", closeReportPanel);
+  confirmBtn.addEventListener("click", function () {
+    if (chosen < 0) return;
+    var reports = loadReports();
+    reports[key] = { r: chosen, t: Date.now() };
+    saveReports(reports);
+    closeReportPanel();
+    applyProvHide(el);
+    toast("通報を受け付けました。この掲載は確認のため仮非表示になりました");
+  });
+  var row = document.createElement("div");
+  row.className = "rp-row";
+  row.appendChild(confirmBtn);
+  row.appendChild(cancelBtn);
+  reportPanel.appendChild(row);
+  line.parentNode.insertBefore(reportPanel, line.nextSibling);
+}
+function closeReportPanel() {
+  if (reportPanel && reportPanel.parentNode) reportPanel.parentNode.removeChild(reportPanel);
+  reportPanel = null;
+}
+document.addEventListener("DOMContentLoaded", placeReportUI);
+(function watchReportContainers() {
+  var seen = {};
+  ["list", "url-rows"].forEach(function (id) {
+    var c = document.getElementById(id);
+    if (!c || seen[c.id]) return;
+    seen[c.id] = 1;
+    if (typeof MutationObserver === "undefined") return;
+    var syncing = false;
+    new MutationObserver(function () {
+      if (syncing) return;
+      syncing = true;
+      try { placeReportUI(); } finally { syncing = false; }
+    }).observe(c, { childList: true });
+  });
+  if (!Object.keys(seen).length) document.addEventListener("DOMContentLoaded", watchReportContainers);
+})();
