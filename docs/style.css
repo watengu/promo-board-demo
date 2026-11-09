@@ -392,6 +392,12 @@ footer.site a { color: var(--ink-soft); font-weight: 600; }
 .stamp-btn.on .stamp-count { color: #bc5633; }
 .cell { min-width: 0; }
 .cell .stamp-bar { margin: 8px 2px 0; }
+/* カード下のスタンプは1行に収める（2026-11-09 小差分修正：2行折れ対策）。
+   セル幅ではラベル付き4ボタンが物理的に入らないため、セル内だけ絵文字＋数字の
+   コンパクト表示にする。ラベルは aria-label / title で保持し、URL行（全幅）では従来どおり表示。 */
+.cell .stamp-bar { flex-wrap: nowrap; gap: 5px; }
+.cell .stamp-btn { flex: 1 1 0; min-width: 0; justify-content: center; padding: 6px 0; gap: 4px; font-size: 12px; }
+.cell .stamp-btn .stamp-label { display: none; }
 .report-line { text-align: right; margin: 6px 2px 14px; }
 .cell .report-line { margin: 6px 2px 0; }
 .report-btn { font-size: 11px; color: var(--sub); background: none; border: 1px solid var(--line, #ddd); border-radius: 999px; padding: 3px 10px; cursor: pointer; }

@@ -146,6 +146,8 @@ function buildStampBar(target) {
     btn.type = "button";
     btn.className = "stamp-btn";
     btn.setAttribute("data-stamp-btn", sp.id);
+    btn.setAttribute("aria-label", sp.label);
+    btn.title = sp.label;
     var face = sp.img
       ? '<img src="' + sp.img + '" alt="' + sp.label + '">'
       : '<span class="stamp-glyph">' + sp.glyph + "</span>";
