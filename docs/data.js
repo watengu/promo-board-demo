@@ -16,5 +16,6 @@ const CARD_INDEX = [
   { id: 9, name: "あおい", job: "インフルエンサー", board: "media", cardUrl: "https://watengu.github.io/profile-card-demo/card/9.html" },
   { id: 10, name: "sakura", job: "インフルエンサー", board: "media", cardUrl: "https://watengu.github.io/profile-card-demo/card/10.html" },
   { id: 11, name: "モデルC", job: "インフルエンサー", board: "media", cardUrl: "https://watengu.github.io/profile-card-demo/card/11.html" },
-  { id: 12, name: "MIYU", job: "インフルエンサー", board: "media", cardUrl: "https://watengu.github.io/profile-card-demo/card/12.html" }
+  { id: 12, name: "MIYU", job: "インフルエンサー", board: "media", cardUrl: "https://watengu.github.io/profile-card-demo/card/12.html" },
+  { id: 13, name: "ララァ", job: "インフルエンサー", board: "media", cardUrl: "https://watengu.github.io/profile-card-demo/card/13.html" }
 ];
