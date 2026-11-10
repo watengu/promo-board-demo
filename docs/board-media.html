@@ -31,26 +31,82 @@
 
   <div class="fresh-band" id="fresh-band">
     <div class="fb-title">この板の新着</div>
-    <div class="fb-row">新着URL：<b>2件</b>（利用者が貼った一般の掲載） ／ カード掲載：<b>まだありません（デモ）</b></div>
-    <div class="fb-note">カードが載ると、この板にも鮮度の帯（今日更新）がカード単位で付きます。数字はカード側の持ち物です。</div>
+    <div class="fb-row">新着URL：<b>2件</b>（利用者が貼った一般の掲載） ／ カード掲載：<b>5件</b>（AIモデルの見本カード）</div>
+    <div class="fb-note">数字はカード側の持ち物です。</div>
   </div>
 
   <div class="controls" id="controls">
-    <input type="search" class="search-box" id="q" placeholder="URL掲載を名前で検索（例：アナウンサー）">
+    <input type="search" class="search-box" id="q" placeholder="カードを名前・エリア・タグで検索（例：ダンス）">
     <div class="sort-tabs" id="sort-tabs">
-      <button data-sort="new" class="on">新着順</button>
-      <button data-sort="name">名前順</button>
+      <button data-sort="flow" class="on">勢い順</button>
+      <button data-sort="new">新着順</button>
+      <button data-sort="updated">更新順</button>
     </div>
-    <p class="result-count" id="result-count">URL掲載 2件（メディア板）／カード 0件</p>
+    <p class="sort-note">基本の並びは勢い順です：更新・反応・クリックの動きが新しいカードが上に来ます（文章・スレッドはありません）。</p>
+    <p class="result-count" id="result-count">カード 5件（メディア板）</p>
   </div>
 
   <div class="board-note">
-    この板には、まだカードが載っていません（デモ）。<br>
-    メディア系の職種（フリーアナウンサー・インフルエンサー等）で作ったカードのURLが貼られると、ここにカードの見た目で表示され、リンク先はカードサイトの公開プロフィールページになります。
+    この板のカードは、AIモデルの見本カードです（実在の人物ではありません）。メディア系の職種（フリーアナウンサー・インフルエンサー等）で作ったカードのURLが貼られると、ここにカードの見た目で表示され、リンク先はカードサイトの公開プロフィールページになります。
     <div class="cta-row">
       <a href="https://watengu.github.io/profile-card-demo/">カードを作る（カードサイトへ）→</a>
     </div>
   </div>
+
+  <!-- カード一覧は初期HTMLに焼き込み済み（JSなしでも表示される）。リンクと写真はカードサイト（サイトB）の絶対URL -->
+  <main class="grid" id="list">
+    <div class="cell"><a class="p-card" href="https://watengu.github.io/profile-card-demo/card/8.html" data-id="8" data-job="インフルエンサー" data-joined="1" data-updated="25" data-hay="Mia 渋谷 ファッション 写真 コーデ AIモデル見本">
+      <span class="ph"><img src="https://watengu.github.io/profile-card-demo/images/p8-a.jpg" alt="Miaの写真（AI生成）" data-name="Mia" data-color="#8a5ba6" onerror="imgFallback(this)"><span class="new-badge">NEW</span><span class="ai-label">AI生成</span></span>
+      <span class="body">
+      <span class="name">Mia <span class="age">25歳</span></span><br>
+      <span class="area">渋谷</span> <span class="job">職種：インフルエンサー</span>
+      <span class="tags"><span>ファッション</span><span>写真</span><span>コーデ</span></span>
+      <span class="stars">⭐⭐⭐⭐⭐<span class="stars-note">本人のおすすめ度（掲載者自己申告）</span></span>
+      <span class="meta"><span>♥ 196</span><span class="upd-time">更新：25分前</span></span>
+      <span class="detail-link">プロフィールカードを見る（カードサイトへ）→</span>
+      </span></a></div>
+    <div class="cell"><a class="p-card" href="https://watengu.github.io/profile-card-demo/card/9.html" data-id="9" data-job="インフルエンサー" data-joined="1" data-updated="95" data-hay="あおい 新宿 モデル 写真 カフェ AIモデル見本">
+      <span class="ph"><img src="https://watengu.github.io/profile-card-demo/images/p9-a.jpg" alt="あおいの写真（AI生成）" data-name="あおい" data-color="#4a6fa5" onerror="imgFallback(this)"><span class="new-badge">NEW</span><span class="ai-label">AI生成</span></span>
+      <span class="body">
+      <span class="name">あおい <span class="age">24歳</span></span><br>
+      <span class="area">新宿</span> <span class="job">職種：インフルエンサー</span>
+      <span class="tags"><span>モデル</span><span>写真</span><span>カフェ</span></span>
+      <span class="stars">⭐⭐⭐⭐☆<span class="stars-note">本人のおすすめ度（掲載者自己申告）</span></span>
+      <span class="meta"><span>♥ 88</span><span class="upd-time">更新：1時間前</span></span>
+      <span class="detail-link">プロフィールカードを見る（カードサイトへ）→</span>
+      </span></a></div>
+    <div class="cell"><a class="p-card" href="https://watengu.github.io/profile-card-demo/card/10.html" data-id="10" data-job="インフルエンサー" data-joined="1" data-updated="160" data-hay="sakura 池袋 モデル ファッション 秋コーデ AIモデル見本">
+      <span class="ph"><img src="https://watengu.github.io/profile-card-demo/images/p10-a.jpg" alt="sakuraの写真（AI生成）" data-name="sakura" data-color="#c25e7e" onerror="imgFallback(this)"><span class="new-badge">NEW</span><span class="ai-label">AI生成</span></span>
+      <span class="body">
+      <span class="name">sakura <span class="age">26歳</span></span><br>
+      <span class="area">池袋</span> <span class="job">職種：インフルエンサー</span>
+      <span class="tags"><span>モデル</span><span>ファッション</span><span>秋コーデ</span></span>
+      <span class="stars">⭐⭐⭐⭐⭐<span class="stars-note">本人のおすすめ度（掲載者自己申告）</span></span>
+      <span class="meta"><span>♥ 142</span><span class="upd-time">更新：2時間前</span></span>
+      <span class="detail-link">プロフィールカードを見る（カードサイトへ）→</span>
+      </span></a></div>
+    <div class="cell"><a class="p-card" href="https://watengu.github.io/profile-card-demo/card/11.html" data-id="11" data-job="インフルエンサー" data-joined="1" data-updated="220" data-hay="モデルC 銀座 写真 読書 カフェ AIモデル見本">
+      <span class="ph"><img src="https://watengu.github.io/profile-card-demo/images/p11-a.jpg" alt="モデルCの写真（AI生成）" data-name="モデルC" data-color="#5f7d5a" onerror="imgFallback(this)"><span class="new-badge">NEW</span><span class="ai-label">AI生成</span></span>
+      <span class="body">
+      <span class="name">モデルC <span class="age">25歳</span></span><br>
+      <span class="area">銀座</span> <span class="job">職種：インフルエンサー</span>
+      <span class="tags"><span>写真</span><span>読書</span><span>カフェ</span></span>
+      <span class="stars">⭐⭐⭐⭐☆<span class="stars-note">本人のおすすめ度（掲載者自己申告）</span></span>
+      <span class="meta"><span>♥ 97</span><span class="upd-time">更新：3時間前</span></span>
+      <span class="detail-link">プロフィールカードを見る（カードサイトへ）→</span>
+      </span></a></div>
+    <div class="cell"><a class="p-card" href="https://watengu.github.io/profile-card-demo/card/12.html" data-id="12" data-job="インフルエンサー" data-joined="1" data-updated="55" data-hay="MIYU 原宿 ダンス 動画 ファッション AIモデル見本">
+      <span class="ph"><img src="https://watengu.github.io/profile-card-demo/images/p12-a.jpg" alt="MIYUの写真（AI生成）" data-name="MIYU" data-color="#a67c3d" onerror="imgFallback(this)"><span class="new-badge">NEW</span><span class="ai-label">AI生成</span></span>
+      <span class="body">
+      <span class="name">MIYU <span class="age">23歳</span></span><br>
+      <span class="area">原宿</span> <span class="job">職種：インフルエンサー</span>
+      <span class="tags"><span>ダンス</span><span>動画</span><span>ファッション</span></span>
+      <span class="stars">⭐⭐⭐⭐⭐<span class="stars-note">本人のおすすめ度（掲載者自己申告）</span></span>
+      <span class="meta"><span>♥ 176</span><span class="upd-time">更新：55分前</span></span>
+      <span class="detail-link">プロフィールカードを見る（カードサイトへ）→</span>
+      </span></a></div>
+  </main>
+  <p class="empty" id="empty" style="display:none">条件に合うカードがありません。</p>
 
   <h2 class="sec-title">利用者が貼ったURL（カード以外）</h2>
   <p class="sec-note">運営枠ではありません。利用者が自由に貼った一般の掲載です。表示は先方のロゴとURLだけです。デモではリンク先はすべてダミー（#）です。</p>
@@ -73,20 +129,70 @@
   </footer>
 </div>
 
+<script src="data.js"></script>
 <script src="app.js"></script>
 <script>
-var rowsEl = document.getElementById('url-rows');
-var rowEls = Array.prototype.slice.call(rowsEl.querySelectorAll('.url-row'));
-var sortMode = 'new', query = '';
+var listEl = document.getElementById('list');
+var sortMode = 'flow', query = '';
+var cardEls = Array.prototype.slice.call(listEl.querySelectorAll('.p-card'));
+function effUpd(el) {
+  var st = getCardState(+el.dataset.id);
+  if (st && st.updatedAt) return Math.max(0, Math.round((Date.now() - st.updatedAt) / 60000));
+  return +el.dataset.updated;
+}
+function byId(id) { return CARD_INDEX.find(function (p) { return p.id === id; }); }
+function enforceRange() {
+  cardEls = cardEls.filter(function (el) {
+    var rec = byId(+el.dataset.id);
+    var ok = !!rec && BOARD_RANGE_JOBS.indexOf(rec.job) >= 0 && el.dataset.job === rec.job;
+    if (!ok) { var cell0 = el.parentNode; if (cell0 && cell0.classList.contains('cell')) cell0.remove(); else el.remove(); }
+    return ok;
+  });
+}
+enforceRange();
+function renderFresh() {
+  var items = cardEls.map(function (el) {
+    return { p: byId(+el.dataset.id), upd: effUpd(el) };
+  });
+  var today = items.filter(function (x) { return x.upd < 1440; })
+                   .sort(function (a, b) { return a.upd - b.upd; });
+  var within24 = items.filter(function (x) { return x.upd <= 1440; });
+  var names = today.slice(0, 3).map(function (x) { return x.p.name; }).join('・');
+  if (today.length > 3) names += ' ほか';
+  document.getElementById('fresh-band').innerHTML =
+    '<div class="fb-title">この板も動いています</div>' +
+    '<div class="fb-row">今日更新：<b>' + today.length + '件</b>' +
+    (today.length ? '（' + names + '）' : '') + '</div>' +
+    '<div class="fb-row">24時間以内の更新：<b>' + within24.length + '件</b></div>' +
+    '<div class="fb-note">今日更新＝本人が「更新しました」を押したカード／24時間以内＝更新から24時間以内です</div>';
+}
+function paintState() {
+  cardEls.forEach(function (el) {
+    var upd = el.querySelector('.upd-time');
+    if (upd) upd.textContent = '更新：' + relTime(effUpd(el));
+  });
+}
+function effMove(el) {
+  var upd = effUpd(el);
+  var mv = (typeof lastMoveMin === 'function') ? lastMoveMin('card-' + el.dataset.id) : null;
+  return mv === null ? upd : Math.min(upd, mv);
+}
 function render() {
   var q = query.toLowerCase();
-  var items = rowEls.filter(function (el) { return el.textContent.toLowerCase().indexOf(q) >= 0; });
+  var items = cardEls.filter(function (el) { return el.dataset.hay.toLowerCase().indexOf(q) >= 0; });
+  if (sortMode === 'flow') items.sort(function (a, b) {
+    var d = effMove(a) - effMove(b);
+    if (d) return d;
+    var st = stampTotal('card-' + b.dataset.id) - stampTotal('card-' + a.dataset.id);
+    if (st) return st;
+    return (+a.dataset.joined) - (+b.dataset.joined);
+  });
   if (sortMode === 'new') items.sort(function (a, b) { return (+a.dataset.joined) - (+b.dataset.joined); });
-  if (sortMode === 'name') items.sort(function (a, b) { return a.dataset.name < b.dataset.name ? -1 : 1; });
-  rowEls.forEach(function (el) { el.style.display = 'none'; });
-  items.forEach(function (el) { el.style.display = ''; rowsEl.appendChild(el); });
+  if (sortMode === 'updated') items.sort(function (a, b) { return effUpd(a) - effUpd(b); });
+  cardEls.forEach(function (el) { var c = el.parentNode; if (c && c.classList.contains('cell')) c.style.display = 'none'; else el.style.display = 'none'; });
+  items.forEach(function (el) { var c = el.parentNode; if (c && c.classList.contains('cell')) { c.style.display = ''; listEl.appendChild(c); } else { el.style.display = ''; listEl.appendChild(el); } });
   document.getElementById('empty').style.display = items.length ? 'none' : 'block';
-  document.getElementById('result-count').textContent = 'URL掲載 ' + items.length + '件（メディア板）／カード 0件';
+  document.getElementById('result-count').textContent = 'カード ' + items.length + '件（メディア板）';
 }
 document.querySelectorAll('#sort-tabs button').forEach(function (b) {
   b.addEventListener('click', function () {
@@ -97,6 +203,8 @@ document.querySelectorAll('#sort-tabs button').forEach(function (b) {
 document.getElementById('q').addEventListener('input', function (e) {
   query = e.target.value.trim(); render();
 });
+paintState();
+renderFresh();
 render();
 </script>
 </body>

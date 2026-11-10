@@ -11,5 +11,10 @@ const CARD_INDEX = [
   { id: 4, name: "あかり", job: "セラピスト", board: "relaxation", cardUrl: "https://watengu.github.io/profile-card-demo/card/4.html" },
   { id: 5, name: "かえで", job: "セラピスト", board: "relaxation", cardUrl: "https://watengu.github.io/profile-card-demo/card/5.html" },
   { id: 6, name: "ゆき", job: "セラピスト", board: "relaxation", cardUrl: "https://watengu.github.io/profile-card-demo/card/6.html" },
-  { id: 7, name: "なな", job: "ネイリスト", board: "beauty", cardUrl: "https://watengu.github.io/profile-card-demo/card/7.html" }
+  { id: 7, name: "なな", job: "ネイリスト", board: "beauty", cardUrl: "https://watengu.github.io/profile-card-demo/card/7.html" },
+  { id: 8, name: "Mia", job: "インフルエンサー", board: "media", cardUrl: "https://watengu.github.io/profile-card-demo/card/8.html" },
+  { id: 9, name: "あおい", job: "インフルエンサー", board: "media", cardUrl: "https://watengu.github.io/profile-card-demo/card/9.html" },
+  { id: 10, name: "sakura", job: "インフルエンサー", board: "media", cardUrl: "https://watengu.github.io/profile-card-demo/card/10.html" },
+  { id: 11, name: "モデルC", job: "インフルエンサー", board: "media", cardUrl: "https://watengu.github.io/profile-card-demo/card/11.html" },
+  { id: 12, name: "MIYU", job: "インフルエンサー", board: "media", cardUrl: "https://watengu.github.io/profile-card-demo/card/12.html" }
 ];
