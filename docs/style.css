@@ -60,6 +60,7 @@ nav.menu a.on { background: var(--ink); color: #fff; box-shadow: none; }
 .lp-hero h1 { font-size: 32px; font-weight: 800; line-height: 1.35; letter-spacing: .01em; }
 .lp-hero h1 .hl { color: var(--accent); }
 .lp-hero .lead { font-size: 13.5px; color: var(--ink-soft); margin-top: 12px; max-width: 34em; }
+.lp-hero .user-line { font-size: 13.5px; color: var(--ink-soft); margin-top: 8px; max-width: 34em; line-height: 1.8; }
 .hero-strip { display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px; margin-top: 22px; }
 .hero-photo {
   position: relative; display: block; border-radius: var(--radius); overflow: hidden;
